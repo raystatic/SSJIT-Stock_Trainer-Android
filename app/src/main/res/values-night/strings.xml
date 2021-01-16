@@ -1,5 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Paper Trading</string>
     <string name="privacy_policy">By continuing, you agree to our 2021 © Terms of Services | Privacy Policy</string>
-    <string name="contiue_with_google">Continue with Google</string>
 </resources>
