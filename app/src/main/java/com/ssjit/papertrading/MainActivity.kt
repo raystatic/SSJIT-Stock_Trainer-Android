@@ -1,4 +1,4 @@
-package com.ssjit.stocktrainer
+package com.ssjit.papertrading
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

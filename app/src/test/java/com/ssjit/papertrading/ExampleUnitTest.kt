@@ -1,4 +1,4 @@
-package com.ssjit.stocktrainer
+package com.ssjit.papertrading
 
 import org.junit.Test
 
