@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="@drawable/login_gradient"
-    android:padding="16dp">
+    android:padding="16dp"
+    style="@style/Theme.SSJIT_STOCK_TRAINER">
 
     <ImageView
         android:layout_width="100dp"

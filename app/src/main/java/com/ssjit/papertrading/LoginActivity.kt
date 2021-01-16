@@ -36,22 +36,23 @@ class LoginActivity : AppCompatActivity() {
 
         account?.let { acc->
             updateUI(acc)
-        } ?: kotlin.run {
-            binding.cardLogin.setOnClickListener {
-                signIn()
-            }
+        }
+
+        binding.cardLogin.setOnClickListener {
+            signIn()
         }
 
     }
 
     private fun signIn() {
+        binding.tvLogin.text = Constants.SIGNING_IN
         val signInIntent: Intent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun updateUI(acc: GoogleSignInAccount) {
-        Timber.d("login: $acc")
-        binding.root.showSnack(message = "Login success")
+        Timber.d("login_sucsess: ${acc.displayName}")
+        binding.root.showSnack(message = "Login success: ${acc.displayName}")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,14 +72,21 @@ class LoginActivity : AppCompatActivity() {
 
             account?.let {
                 updateUI(it)
+                binding.tvLogin.text = Constants.LOGIN_SUCCESS
             } ?: kotlin.run {
                 binding.root.showSnack(Constants.CANNOT_LOGIN)
+                binding.tvLogin.text = getString(R.string.contiue_with_google)
             }
 
         } catch (e: ApiException) {
             Timber.d("signInResult:failed code=${e.statusCode}")
             binding.root.showSnack(Constants.LOGIN_FAILED)
+            binding.tvLogin.text = getString(R.string.contiue_with_google)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 }
