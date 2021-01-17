@@ -1,4 +1,4 @@
-package com.ssjit.papertrading
+package com.ssjit.papertrading.other
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
