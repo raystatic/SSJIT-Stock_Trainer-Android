@@ -1,25 +1,42 @@
-package com.ssjit.papertrading
+package com.ssjit.papertrading.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.ssjit.papertrading.ViewExtension.showSnack
+import com.ssjit.papertrading.R
+import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.databinding.ActivityLoginBinding
+import com.ssjit.papertrading.other.ViewExtension.showSnack
+import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.PrefManager
+import com.ssjit.papertrading.other.Status
+import com.ssjit.papertrading.ui.viewmodels.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 
 private const val RC_SIGN_IN = 100
+
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var gso : GoogleSignInOptions
     private lateinit var googleSignInClient: GoogleSignInClient
+
+    private val vm by viewModels<LoginViewModel>()
+
+    @Inject
+    lateinit var prefManager: PrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -42,6 +59,29 @@ class LoginActivity : AppCompatActivity() {
             signIn()
         }
 
+        subscribeToObservers()
+
+    }
+
+    private fun subscribeToObservers() {
+        vm.loginResponse.observe(this, Observer {
+            when(it.status){
+                Status.ERROR -> binding.root.showSnack(it.message ?: Constants.SOMETHING_WENT_WRONG)
+                Status.LOADING -> binding.tvLogin.text = Constants.SIGNING_IN
+                Status.SUCCESS -> {
+                    it.data?.user?.let { user->
+                        prefManager.saveString(Constants.KEY_USER_NAME, user.name)
+                        prefManager.saveString(Constants.KEY_USER_EMAIL, user.email)
+                        prefManager.saveString(Constants.KEY_USER_AVATAR, user.avatar)
+                        prefManager.saveString(Constants.KEY_USER_ID, user.id)
+
+                        startActivity(Intent(this,HomeActivity::class.java))
+                        finish()
+
+                    }
+                }
+            }
+        })
     }
 
     private fun signIn() {
@@ -51,8 +91,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(acc: GoogleSignInAccount) {
-        Timber.d("login_sucsess: ${acc.displayName}")
-        binding.root.showSnack(message = "Login success: ${acc.displayName}")
+
+        val userName = acc.displayName ?: ""
+        val avatar:String = acc.photoUrl.toString()
+        val email = acc.email ?: ""
+
+        if (userName.isEmpty() || email.isEmpty()){
+            binding.root.showSnack(Constants.CANNOT_LOGIN)
+            return
+        }
+
+        if (prefManager.getString(Constants.KEY_USER_ID).isNullOrEmpty()){
+            val loginRequest = LoginRequest(name = userName, email = email, avatar = avatar)
+            vm.login(loginRequest)
+        }else{
+            startActivity(Intent(this,HomeActivity::class.java))
+            finish()
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -72,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
 
             account?.let {
                 updateUI(it)
-                binding.tvLogin.text = Constants.LOGIN_SUCCESS
+
             } ?: kotlin.run {
                 binding.root.showSnack(Constants.CANNOT_LOGIN)
                 binding.tvLogin.text = getString(R.string.contiue_with_google)
