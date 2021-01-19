@@ -23,11 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:menu="@menu/bottom_nav_menu"
-        app:itemTextAppearanceActive=""
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:itemIconTint="@drawable/bottom_nav_selector"
         app:itemTextColor="@drawable/bottom_nav_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
