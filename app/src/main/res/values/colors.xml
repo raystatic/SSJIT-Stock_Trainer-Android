@@ -12,5 +12,6 @@
     <color name="blue">#6581ef</color>
     <color name="lightblue">#1eadef</color>
     <color name="primaryblue">#3066be</color>
+    <color name="primary_grey">#646464</color>
 
 </resources>

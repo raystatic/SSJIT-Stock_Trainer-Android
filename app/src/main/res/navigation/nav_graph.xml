@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/watchlistFragment">
+
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.WatchlistFragment"
+        android:label="WatchlistFragment" >
+        <action
+            android:id="@+id/action_watchlistFragment_to_moversFragment2"
+            app:destination="@id/moversFragment" />
+        <action
+            android:id="@+id/action_watchlistFragment_to_portfolioFragment"
+            app:destination="@id/portfolioFragment" />
+        <action
+            android:id="@+id/action_watchlistFragment_to_transactionsFragment"
+            app:destination="@id/transactionsFragment" />
+        <action
+            android:id="@+id/action_watchlistFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moversFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.MoversFragment"
+        android:label="MoversFragment" >
+        <action
+            android:id="@+id/action_moversFragment_to_portfolioFragment2"
+            app:destination="@id/portfolioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/portfolioFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.PortfolioFragment"
+        android:label="PortfolioFragment" >
+        <action
+            android:id="@+id/action_portfolioFragment_to_transactionsFragment2"
+            app:destination="@id/transactionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.TransactionsFragment"
+        android:label="TransactionsFragment" >
+        <action
+            android:id="@+id/action_transactionsFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>
