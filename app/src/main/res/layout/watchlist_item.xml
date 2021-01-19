@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RELIANCE"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:id="@+id/tvSymbol"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reliance Industries"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:id="@+id/tvCompany"
+        android:layout_below="@+id/tvSymbol"
+        android:layout_alignStart="@+id/tvSymbol"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₹2016.4"
+        android:textColor="@color/green"
+        android:textSize="16sp"
+        android:id="@+id/tvPrice"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="32.45 (1.61%)"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:id="@+id/tvChange"
+        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@+id/tvPrice"
+        android:layout_below="@+id/tvPrice"/>
+
+</RelativeLayout>

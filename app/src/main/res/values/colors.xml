@@ -13,5 +13,7 @@
     <color name="lightblue">#1eadef</color>
     <color name="primaryblue">#3066be</color>
     <color name="primary_grey">#646464</color>
+    <color name="green">#15B76C</color>
+    <color name="primary_green">#55D3BB</color>
 
 </resources>
