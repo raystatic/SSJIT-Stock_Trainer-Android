@@ -19,4 +19,6 @@ object Constants {
     const val KEY_USER_AVATAR = "key_avatar"
     const val KEY_USER_ID = "key_userId"
 
+    const val STOCK_SYMBOL = "stock_symbol"
+
 }

@@ -3,6 +3,7 @@ package com.ssjit.papertrading.data.remote
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
+import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,5 +17,8 @@ interface ApiService {
 
     @GET("stock/search")
     suspend fun searchStocks(@Query("keyword") keyword:String):Response<SearchResponse>
+
+    @GET("stock/stock_info")
+    suspend fun getStockInfo(@Query("symbol") symbol:String):Response<StockDetailResponse>
 
 }

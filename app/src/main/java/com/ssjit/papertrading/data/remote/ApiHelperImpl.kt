@@ -3,6 +3,7 @@ package com.ssjit.papertrading.data.remote
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
+import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -15,5 +16,9 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun searchStock(keyword: String): Response<SearchResponse> {
         return apiService.searchStocks(keyword)
+    }
+
+    override suspend fun getStockInfo(symbol: String): Response<StockDetailResponse> {
+        return apiService.getStockInfo(symbol)
     }
 }

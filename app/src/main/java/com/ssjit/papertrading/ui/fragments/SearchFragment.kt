@@ -63,7 +63,9 @@ class SearchFragment: Fragment() {
 
         searchAdapter = SearchItemAdapter(onClick = {symbol->
             symbol.let {
-                startActivity(Intent(requireContext(),StockDetailsActivity::class.java))
+                val intent = Intent(requireContext(),StockDetailsActivity::class.java)
+                intent.putExtra(Constants.STOCK_SYMBOL,symbol)
+                startActivity(intent)
             }
         })
         binding.rvSearchItems.apply {
