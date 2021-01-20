@@ -1,16 +1,15 @@
 package com.ssjit.papertrading.ui.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentSearchBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.DebounceQueryTextListener
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.ViewExtension.showSnack
 import com.ssjit.papertrading.ui.adapters.SearchItemAdapter
@@ -30,9 +29,9 @@ class SearchFragment: Fragment() {
     private lateinit var searchAdapter: SearchItemAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,31 +40,30 @@ class SearchFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val handler = Handler()
-
-
         binding.searchView.apply {
             isIconified = false
             queryHint = "Search stocks eg. Reliance, TCS"
             setOnCloseListener {
                 return@setOnCloseListener true
             }
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    viewmodel.searchStocks(query ?: "")
-
-                    return true
+            setOnQueryTextListener(
+                DebounceQueryTextListener(
+                   this@SearchFragment.lifecycle
+                ){
+                    it?.let {
+                        if (it.isNotEmpty()){
+                            viewmodel.searchStocks(it)
+                        }
+                    }
                 }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    viewmodel.searchStocks(newText ?: "")
-                    return true
-                }
-            })
+            )
         }
 
+        searchAdapter = SearchItemAdapter(onClick = {symbol->
+            symbol.let {
 
-        searchAdapter = SearchItemAdapter()
+            }
+        })
         binding.rvSearchItems.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = searchAdapter

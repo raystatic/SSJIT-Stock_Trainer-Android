@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssjit.papertrading.data.models.search.Data
 import com.ssjit.papertrading.databinding.SearchItemBinding
 
-class SearchItemAdapter : RecyclerView.Adapter<SearchItemAdapter.SearchItemViewHolder>() {
+class SearchItemAdapter(
+    private val onClick: (String?) -> Unit
+) : RecyclerView.Adapter<SearchItemAdapter.SearchItemViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Data>(){
         override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean =
@@ -45,7 +47,13 @@ class SearchItemAdapter : RecyclerView.Adapter<SearchItemAdapter.SearchItemViewH
             binding.apply {
                 tvSymbol.text = currentItem?.symbol
                 tvCompany.text = currentItem?.name
+
+                root.setOnClickListener {
+                    onClick(currentItem?.symbol)
+                }
+
             }
+
         }
     }
 
