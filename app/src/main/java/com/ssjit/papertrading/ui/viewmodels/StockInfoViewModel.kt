@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.repositories.StockInfoRepository
 import com.ssjit.papertrading.other.Constants
@@ -32,6 +33,10 @@ class StockInfoViewModel @ViewModelInject constructor(
             e.printStackTrace()
             _stockInfoResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG, null))
         }
+    }
+
+    fun upsertStockData(stockData: StockData) = viewModelScope.launch {
+        repository.upsertLocalStock(stockData)
     }
 
 }

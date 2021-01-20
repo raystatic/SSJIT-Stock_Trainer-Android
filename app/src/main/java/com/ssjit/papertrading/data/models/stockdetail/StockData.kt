@@ -1,5 +1,9 @@
 package com.ssjit.papertrading.data.models.stockdetail
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "localStocks")
 data class StockData(
     val adhocMargin: String,
     val applicableMargin: String,
@@ -63,10 +67,14 @@ data class StockData(
     val sellQuantity5: String,
     val series: String,
     val surv_indicator: String,
+
+    @PrimaryKey
     val symbol: String,
     val totalBuyQuantity: String,
     val totalSellQuantity: String,
     val totalTradedValue: String,
     val totalTradedVolume: String,
-    val varMargin: String
+    val varMargin: String,
+
+    var addedToWatchList:Int?=0
 )

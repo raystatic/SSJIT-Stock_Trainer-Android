@@ -13,6 +13,7 @@ import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.ViewExtension.showSnack
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_stock_details.*
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -42,6 +43,7 @@ class StockDetailsActivity : AppCompatActivity() {
 
         viewModel.getStockInfo(symbol = stockSymbol)
 
+
         subscribeToObservers()
 
         val section1 = DonutSection(
@@ -62,10 +64,11 @@ class StockDetailsActivity : AppCompatActivity() {
                     it.data?.let { res->
                         if (!res.error){
                             val stock = res.data?.data?.get(0)
+                            stock?.let { it1 -> viewModel.upsertStockData(it1) }
                             binding.apply {
                                 tvCompanyName.text = stock?.companyName
                                 tvSymbol.text = stock?.symbol
-                                tvPrice.text = "₹${stock?.sellPrice1}"
+                                tvPrice.text = "₹${stock?.closePrice}"
                                 tvOpen.text = stock?.open
                                 tvHigh.text = stock?.dayHigh
                                 tv52WKHigh.text = stock?.high52
@@ -76,7 +79,16 @@ class StockDetailsActivity : AppCompatActivity() {
 //                                tvMKTCap.text = ""
 //                                tvCapType.text = ""
 //                                tvPE.text = ""
+
+                                imgAddToWatchlist.setOnClickListener {
+                                    var isAddedToWatchlist = stock?.addedToWatchList
+                                    isAddedToWatchlist = if (isAddedToWatchlist == 0) 1 else 0
+                                    stock?.addedToWatchList = isAddedToWatchlist
+                                    stock?.let { it1 -> viewModel.upsertStockData(it1) }
+                                }
+
                             }
+
                         }else{
                             Timber.e("Error: ${it.message}")
                             binding.root.showSnack(Constants.SOMETHING_WENT_WRONG)
