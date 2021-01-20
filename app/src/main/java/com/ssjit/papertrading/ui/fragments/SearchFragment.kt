@@ -1,35 +1,48 @@
 package com.ssjit.papertrading.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentSearchBinding
+import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.Status
+import com.ssjit.papertrading.other.ViewExtension.showSnack
+import com.ssjit.papertrading.ui.adapters.SearchItemAdapter
+import com.ssjit.papertrading.ui.viewmodels.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class SearchFragment: Fragment() {
 
     private var _binding: FragmentSearchBinding?=null
 
     private val binding get() = _binding!!
 
+    private val viewmodel by activityViewModels<SearchViewModel>()
+
+    private lateinit var searchAdapter: SearchItemAdapter
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSearchBinding.inflate(inflater, container,false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val handler = Handler()
+
 
         binding.searchView.apply {
             isIconified = false
@@ -37,7 +50,55 @@ class SearchFragment: Fragment() {
             setOnCloseListener {
                 return@setOnCloseListener true
             }
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewmodel.searchStocks(query ?: "")
+
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    viewmodel.searchStocks(newText ?: "")
+                    return true
+                }
+            })
         }
+
+
+        searchAdapter = SearchItemAdapter()
+        binding.rvSearchItems.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = searchAdapter
+        }
+
+        subscribeToObservers()
+
+    }
+
+    private fun subscribeToObservers() {
+        viewmodel.searchResponse.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { res ->
+                        if (!res.error) {
+                            res.data?.let { it1 ->
+                                searchAdapter.submitData(it1)
+                            }
+                        } else {
+                            binding.root.showSnack(it.message ?: Constants.SOMETHING_WENT_WRONG)
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+                    binding.root.showSnack(it.message.toString())
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {
