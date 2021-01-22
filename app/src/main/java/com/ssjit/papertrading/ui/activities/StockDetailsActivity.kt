@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import app.futured.donut.DonutSection
 import com.ssjit.papertrading.R
@@ -31,7 +32,7 @@ class StockDetailsActivity : AppCompatActivity() {
         binding = ActivityStockDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = resources.getColor(R.color.green)
+        window.statusBarColor = ContextCompat.getColor(this,R.color.green)
 
         stockSymbol = intent.getStringExtra(Constants.STOCK_SYMBOL) ?: ""
 

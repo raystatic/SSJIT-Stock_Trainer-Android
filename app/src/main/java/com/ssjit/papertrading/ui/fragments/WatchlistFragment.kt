@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -35,7 +37,8 @@ class WatchlistFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cardSearch.setOnClickListener {v->
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.primaryblue)
+        binding.btnFindStocks.setOnClickListener {v->
             v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
         }
 
@@ -54,7 +57,16 @@ class WatchlistFragment: Fragment() {
 
         viewModel.watchList.observe(viewLifecycleOwner,{
             it.let {
-                watchlistAdapter.submitData(it)
+                if (it.isEmpty()){
+                    binding.btnFindStocks.isVisible = true
+                    binding.tvFindText.isVisible = true
+                    binding.rvWatchlist.isVisible = false
+                }else{
+                    binding.btnFindStocks.isVisible = false
+                    binding.tvFindText.isVisible = false
+                    binding.rvWatchlist.isVisible = true
+                    watchlistAdapter.submitData(it)
+                }
             }
         })
 
