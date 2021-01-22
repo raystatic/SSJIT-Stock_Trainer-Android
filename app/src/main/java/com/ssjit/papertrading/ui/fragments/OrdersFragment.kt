@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ssjit.papertrading.databinding.FragmentMoversBinding
+import com.ssjit.papertrading.databinding.FragmentOrdersBinding
 
-class MoversFragment: Fragment() {
+class OrdersFragment: Fragment() {
 
-    private var _binding:FragmentMoversBinding?=null
+    private var _binding:FragmentOrdersBinding?=null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentMoversBinding.inflate(inflater, container, false)
+        _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         return binding.root
     }
 

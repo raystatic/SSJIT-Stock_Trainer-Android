@@ -5,17 +5,13 @@
         android:title="Watchlist"
         android:icon="@drawable/ic_watch_active" />
 
-    <item android:id="@+id/moversFragment"
-        android:title="Movers"
-        android:icon="@drawable/ic_flash_active" />
+    <item android:id="@+id/ordersFragment"
+        android:title="Orders"
+        android:icon="@drawable/ic_history" />
 
     <item android:id="@+id/portfolioFragment"
         android:title="Portfolio"
         android:icon="@drawable/ic_pie_active" />
-
-    <item android:id="@+id/transactionsFragment"
-        android:title="Transactions"
-        android:icon="@drawable/ic_transaction_active" />
 
     <item android:id="@+id/profileFragment"
         android:title="Profile"
