@@ -19,5 +19,8 @@
     <color name="light_grey">#E1E1E1</color>
 
     <color name="logo_green">#0CB691</color>
+    <color name="app_puple">#91818A</color>
+    <color name="brown">#2D2E29</color>
+    <color name="yellow">#F9E603</color>
 
 </resources>
