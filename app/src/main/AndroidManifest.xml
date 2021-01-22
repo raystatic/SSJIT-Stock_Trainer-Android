@@ -15,7 +15,8 @@
         android:usesCleartextTraffic="true" >
         <activity android:name=".ui.activities.StockDetailsActivity" >
         </activity>
-        <activity android:name=".ui.activities.HomeActivity" />
+        <activity android:name=".ui.activities.HomeActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.activities.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
