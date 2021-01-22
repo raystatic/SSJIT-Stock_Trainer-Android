@@ -51,7 +51,6 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Tata Motors\nAuto-LCVs &amp; HCVs"
           android:textColor="@color/white"
           app:layout_constraintTop_toBottomOf="@+id/imgBack"
           android:layout_marginTop="10dp"
@@ -62,7 +61,6 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="TATAMOTORS"
           android:textColor="@color/white"
           app:layout_constraintTop_toBottomOf="@+id/tvCompanyName"
           android:layout_marginTop="10dp"
@@ -75,7 +73,6 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="₹274.9"
           android:textColor="@color/white"
           app:layout_constraintTop_toBottomOf="@+id/tvSymbol"
           android:layout_marginTop="10dp"
@@ -152,7 +149,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -176,7 +172,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -200,7 +195,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -224,7 +218,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -248,7 +241,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -282,7 +274,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -306,7 +297,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -330,7 +320,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -354,7 +343,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -378,7 +366,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.40"
                 android:textColor="@color/primary_grey"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -430,7 +417,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="81%"
             android:textColor="@color/green"
             android:textSize="22sp"
             android:layout_centerInParent="true"
@@ -441,7 +427,6 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Very Bullish"
           app:layout_constraintTop_toTopOf="@+id/donutView"
           app:layout_constraintBottom_toBottomOf="@id/donutView"
           app:layout_constraintStart_toEndOf="@id/donutView"

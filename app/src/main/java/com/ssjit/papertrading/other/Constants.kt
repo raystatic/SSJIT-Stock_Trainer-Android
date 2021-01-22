@@ -13,10 +13,13 @@ object Constants {
     //const val NETWORK_BASE_URL = "http://192.168.43.226:5000/api/v1/"
 
     const val KEY_PREF_NAME = "PrepareTradingPrefs"
+    const val ROOM_DB_NAME = "PaperTradingRoomDB"
 
     const val KEY_USER_NAME = "key_username"
     const val KEY_USER_EMAIL = "key_email"
     const val KEY_USER_AVATAR = "key_avatar"
     const val KEY_USER_ID = "key_userId"
+
+    const val STOCK_SYMBOL = "stock_symbol"
 
 }
