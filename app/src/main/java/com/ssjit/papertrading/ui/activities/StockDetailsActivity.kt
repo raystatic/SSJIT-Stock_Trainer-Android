@@ -65,7 +65,7 @@ class StockDetailsActivity : AppCompatActivity() {
                     it.data?.let { res->
                         if (!res.error){
                             val stock = res.data?.data?.get(0)
-                            stock?.let { it1 -> viewModel.upsertStockData(it1) }
+
                             binding.apply {
                                 tvCompanyName.text = stock?.companyName
                                 tvSymbol.text = stock?.symbol
@@ -82,9 +82,7 @@ class StockDetailsActivity : AppCompatActivity() {
 //                                tvPE.text = ""
 
                                 imgAddToWatchlist.setOnClickListener {
-                                    var isAddedToWatchlist = stock?.addedToWatchList
-                                    isAddedToWatchlist = if (isAddedToWatchlist == 0) 1 else 0
-                                    stock?.addedToWatchList = isAddedToWatchlist
+                                    stock?.addedToWatchList=1
                                     stock?.let { it1 -> viewModel.upsertStockData(it1) }
                                 }
 

@@ -25,6 +25,16 @@
             android:layout_marginStart="20dp"
             android:layout_centerVertical="true"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"
+            android:id="@+id/imgSearch"/>
+
 
     </RelativeLayout>
 
@@ -35,6 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:weightSum="2"
         android:id="@+id/linIndices"
+        android:background="@color/grey"
         app:layout_constraintTop_toBottomOf="@+id/topBarRel">
 
         <RelativeLayout
@@ -45,7 +56,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SENSEX ₹49624.76"
                 android:textColor="@color/primary_grey"
                 android:layout_gravity="end"
                 android:id="@+id/tvIndexSensex"
@@ -54,7 +64,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-167.36(0.34%)"
                 android:textColor="@color/primary_grey"
                 android:layout_alignEnd="@+id/tvIndexSensex"
                 android:layout_below="@+id/tvIndexSensex"
@@ -70,7 +79,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SENSEX ₹49624.76"
                 android:textColor="@color/primary_grey"
                 android:layout_gravity="end"
                 android:id="@+id/tvIndexNifty"
@@ -79,7 +87,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-167.36(0.34%)"
                 android:textColor="@color/primary_grey"
                 android:layout_alignEnd="@+id/tvIndexNifty"
                 android:layout_below="@+id/tvIndexNifty"

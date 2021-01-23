@@ -48,7 +48,11 @@ class WatchlistFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.primaryblue)
-        binding.btnFindStocks.setOnClickListener {v->
+        binding.btnFindStocks.setOnClickListener { v->
+            v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
+        }
+
+        binding.imgSearch.setOnClickListener { v->
             v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
         }
 
