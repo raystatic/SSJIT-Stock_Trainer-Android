@@ -12,12 +12,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.R
+import com.ssjit.papertrading.data.models.indices.BSEIndex
+import com.ssjit.papertrading.data.models.indices.NSEIndex
 import com.ssjit.papertrading.databinding.FragmentWatchlistBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.PaperWebSocketListener
 import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.WatchlistAdapter
 import com.ssjit.papertrading.ui.viewmodels.WatchlistViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.*
+import okio.ByteString
+import timber.log.Timber
+import java.net.URISyntaxException
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class WatchlistFragment: Fragment() {
@@ -29,9 +37,11 @@ class WatchlistFragment: Fragment() {
     private val viewModel by viewModels<WatchlistViewModel>()
 
     private lateinit var watchlistAdapter:WatchlistAdapter
+    private lateinit var listener: PaperWebSocketListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentWatchlistBinding.inflate(inflater, container, false)
+        initWebSocket()
         return binding.root
     }
 
@@ -70,11 +80,86 @@ class WatchlistFragment: Fragment() {
             }
         })
 
+        viewModel.currentNSE.observe(viewLifecycleOwner,{
+            it?.let {
+                if (it.isNotEmpty()){
+                    val nse = it[0]
+                    binding.tvIndexNifty.text = "NIFTY ${nse.previousClose}"
+                    binding.tvIndexNiftyChange.text = "${nse.percChange}%"
+                }
+            }
+        })
+
+        viewModel.currentBSE.observe(viewLifecycleOwner,{
+            it?.let {
+                if (it.isNotEmpty()){
+                    val bse = it[0]
+                    binding.tvIndexSensex.text = "SENSEX ${bse.todayClose}"
+                    binding.tvIndexSensexChange.text = "${bse.pointPercent}%"
+                }
+
+            }
+        })
+
+    }
+
+    private fun initWebSocket() {
+        val client = OkHttpClient()
+        val request = Request.Builder().url("ws://192.168.0.105:5000").build()
+        listener = PaperWebSocketListener()
+        val ws = client.newWebSocket(request, listener)
+        Timber.d("web_socket: $ws")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    inner class PaperWebSocketListener: WebSocketListener() {
+
+        override fun onOpen(webSocket: WebSocket, response: Response) {
+            super.onOpen(webSocket, response)
+            webSocket.send("{data:start}")
+        }
+
+        override fun onMessage(webSocket: WebSocket, text: String) {
+            super.onMessage(webSocket, text)
+            Timber.d("onMessage: text $text")
+            if (text.endsWith("\"type\":\"BSE\"}")){
+                val bse = BSEIndex.fromString(text)
+                if (!bse.error){
+                    bse.data.forEach {
+                        viewModel.upsertBSE(bse = it)
+                    }
+                }
+            }else if (text.endsWith("\"type\":\"NSE\"}")){
+                val nse = NSEIndex.fromString(text)
+                if (!nse.error){
+                    nse.data.data.forEach {
+                        viewModel.upsertNSE(nse = it)
+                    }
+                }
+            }
+        }
+
+        override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+            super.onMessage(webSocket, bytes)
+            Timber.d("onMessage: bytes $bytes")
+        }
+
+        override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+            super.onClosing(webSocket, code, reason)
+            webSocket.close(1000, null)
+            Timber.d("onClosing: $code, $reason")
+
+        }
+
+        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+            super.onFailure(webSocket, t, response)
+            Timber.d("onFailure: ${t.message}, $response")
+        }
+
     }
 
 }

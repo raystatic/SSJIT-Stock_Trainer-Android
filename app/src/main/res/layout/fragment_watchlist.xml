@@ -57,7 +57,8 @@
                 android:text="-167.36(0.34%)"
                 android:textColor="@color/primary_grey"
                 android:layout_alignEnd="@+id/tvIndexSensex"
-                android:layout_below="@+id/tvIndexSensex"/>
+                android:layout_below="@+id/tvIndexSensex"
+                android:id="@+id/tvIndexSensexChange"/>
 
         </RelativeLayout>
 
@@ -81,7 +82,8 @@
                 android:text="-167.36(0.34%)"
                 android:textColor="@color/primary_grey"
                 android:layout_alignEnd="@+id/tvIndexNifty"
-                android:layout_below="@+id/tvIndexNifty"/>
+                android:layout_below="@+id/tvIndexNifty"
+                android:id="@+id/tvIndexNiftyChange"/>
 
         </RelativeLayout>
 

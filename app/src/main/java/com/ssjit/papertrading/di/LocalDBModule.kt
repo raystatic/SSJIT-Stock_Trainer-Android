@@ -30,4 +30,12 @@ object LocalDBModule {
     @Provides
     fun providesLocalStocksDao(db:RoomDB) = db.getLocalStockDao()
 
+    @Singleton
+    @Provides
+    fun providesNSEDao(db: RoomDB) = db.getNSEDao()
+
+    @Singleton
+    @Provides
+    fun providesBSEDao(db:RoomDB) = db.getBSEDao()
+
 }

@@ -51,9 +51,9 @@ class LoginActivity : AppCompatActivity() {
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
 
-        account?.let { acc->
-            updateUI(acc)
-        }
+//        account?.let { acc->
+//            updateUI(acc)
+//        }
 
         binding.cardLogin.setOnClickListener {
             signIn()
@@ -69,15 +69,23 @@ class LoginActivity : AppCompatActivity() {
                 Status.ERROR -> binding.root.showSnack(it.message ?: Constants.SOMETHING_WENT_WRONG)
                 Status.LOADING -> binding.tvLogin.text = Constants.SIGNING_IN
                 Status.SUCCESS -> {
-                    it.data?.user?.let { user->
-                        prefManager.saveString(Constants.KEY_USER_NAME, user.name)
-                        prefManager.saveString(Constants.KEY_USER_EMAIL, user.email)
-                        prefManager.saveString(Constants.KEY_USER_AVATAR, user.avatar)
-                        prefManager.saveString(Constants.KEY_USER_ID, user.id)
 
-                        startActivity(Intent(this,HomeActivity::class.java))
-                        finish()
+                    it.data?.let { res->
+                        if (!res.error){
+                            res.user?.let { user ->
+                                prefManager.saveString(Constants.KEY_USER_NAME, user.name)
+                                prefManager.saveString(Constants.KEY_USER_EMAIL, user.email)
+                                prefManager.saveString(Constants.KEY_USER_AVATAR, user.avatar)
+                                prefManager.saveString(Constants.KEY_USER_ID, user.id)
 
+                                startActivity(Intent(this,HomeActivity::class.java))
+                                finish()
+                            }
+                        }else{
+                            binding.root.showSnack(res.message ?: Constants.SOMETHING_WENT_WRONG)
+                            startActivity(Intent(this,HomeActivity::class.java))
+                            finish()
+                        }
                     }
                 }
             }
