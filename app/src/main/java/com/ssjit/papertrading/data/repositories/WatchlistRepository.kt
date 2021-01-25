@@ -6,10 +6,7 @@ import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
 import javax.inject.Inject
 
-class WatchlistRepository @Inject constructor(
-    private val nseDao: NSEDao,
-    private val bseDao: BSEDao
-){
+class WatchlistRepository{
 
 
 

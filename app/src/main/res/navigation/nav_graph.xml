@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_watchlistFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_watchlistFragment_to_stockDetailsFragment"
+            app:destination="@id/stockDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
@@ -54,5 +57,17 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.ssjit.papertrading.ui.fragments.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_stockDetailsFragment"
+            app:destination="@id/stockDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockDetailsFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.StockDetailsFragment"
+        android:label="StockDetailsFragment" >
+        <action
+            android:id="@+id/action_stockDetailsFragment_to_watchlistFragment"
+            app:destination="@id/watchlistFragment" />
+    </fragment>
 </navigation>

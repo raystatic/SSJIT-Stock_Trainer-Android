@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ssjit.papertrading.R
 import com.ssjit.papertrading.databinding.FragmentSearchBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.DebounceQueryTextListener
@@ -62,10 +64,9 @@ class SearchFragment: Fragment() {
         }
 
         searchAdapter = SearchItemAdapter(onClick = {symbol->
-            symbol.let {
-                val intent = Intent(requireContext(),StockDetailsActivity::class.java)
-                intent.putExtra(Constants.STOCK_SYMBOL,symbol)
-                startActivity(intent)
+            symbol?.let {
+                StockDetailsFragment.stockSymbol = symbol
+                binding.root.findNavController().navigate(R.id.action_searchFragment_to_stockDetailsFragment)
             }
         })
         binding.rvSearchItems.apply {

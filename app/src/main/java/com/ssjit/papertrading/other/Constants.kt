@@ -21,5 +21,6 @@ object Constants {
     const val KEY_USER_ID = "key_userId"
 
     const val STOCK_SYMBOL = "stock_symbol"
+    const val ISLOCAL = "is_stock_local"
 
 }

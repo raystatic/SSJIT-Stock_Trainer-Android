@@ -36,6 +36,9 @@ class SearchItemAdapter(
     override fun onBindViewHolder(holder: SearchItemViewHolder, position: Int) {
         val currentItem = differ.currentList[position]
         holder.bind(currentItem)
+        holder.itemView.setOnClickListener {
+            onClick(currentItem?.symbol)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -47,11 +50,6 @@ class SearchItemAdapter(
             binding.apply {
                 tvSymbol.text = currentItem?.symbol
                 tvCompany.text = currentItem?.name
-
-                root.setOnClickListener {
-                    onClick(currentItem?.symbol)
-                }
-
             }
 
         }

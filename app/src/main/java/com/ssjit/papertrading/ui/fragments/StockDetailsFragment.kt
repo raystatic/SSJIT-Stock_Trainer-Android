@@ -1,14 +1,19 @@
-package com.ssjit.papertrading.ui.activities
+package com.ssjit.papertrading.ui.fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import app.futured.donut.DonutSection
 import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.databinding.ActivityStockDetailsBinding
+import com.ssjit.papertrading.databinding.FragmentHoldingBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.ViewExtension.showSnack
@@ -17,29 +22,25 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class StockDetailsActivity : AppCompatActivity() {
+class StockDetailsFragment: Fragment() {
 
-    private lateinit var binding:ActivityStockDetailsBinding
+    private var _binding: ActivityStockDetailsBinding?=null
+    private val binding get() = _binding!!
 
-    private var stockSymbol = ""
-    private var isLocal = false
+    private val viewModel by activityViewModels<StockInfoViewModel>()
 
-    private val viewModel by viewModels<StockInfoViewModel>()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = ActivityStockDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityStockDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        window.statusBarColor = ContextCompat.getColor(this,R.color.green)
-
-        stockSymbol = intent.getStringExtra(Constants.STOCK_SYMBOL) ?: ""
-        isLocal = intent.getBooleanExtra(Constants.ISLOCAL, false)
-
-        if (stockSymbol.isEmpty()) finish()
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.green)
 
         binding.imgBack.setOnClickListener {
-            finish()
+//            finish()
         }
 
         viewModel.getStockInfo(symbol = stockSymbol)
@@ -48,9 +49,9 @@ class StockDetailsActivity : AppCompatActivity() {
         subscribeToObservers()
 
         val section1 = DonutSection(
-            name = "section_1",
-            color = resources.getColor(R.color.primary_green),
-            amount = 0.81f
+                name = "section_1",
+                color = resources.getColor(R.color.primary_green),
+                amount = 0.81f
         )
 
         binding.donutView.cap = 1f
@@ -93,13 +94,14 @@ class StockDetailsActivity : AppCompatActivity() {
 //            }
 //        })
 
-        viewModel.stockInfoResponse.observe(this, {
+        viewModel.stockInfoResponse.observe(viewLifecycleOwner, {
             when(it.status){
                 Status.SUCCESS -> {
                     it.data?.let { res->
                         if (!res.error){
+                            if (res.data?.data?.isEmpty() ==  true) return@observe
                             val stock = res.data?.data?.get(0)
-                            stock?.let { it1 -> viewModel.upsertStockData(it1) }
+                            //stock?.let { it1 -> viewModel.upsertStockData(it1) }
 
                             binding.apply {
                                 tvCompanyName.text = stock?.companyName
@@ -116,38 +118,28 @@ class StockDetailsActivity : AppCompatActivity() {
 //                                tvCapType.text = ""
 //                                tvPE.text = ""
 
-                                viewModel.watchList.observe(this@StockDetailsActivity,{list->
-                                    list?.let {d->
-                                       val s:List<StockData> =  d.filter {
-                                            it.symbol == stock?.symbol
-                                        }
-                                        Timber.d("stock_debug $s")
-                                        if (s.isEmpty()){
-                                            stock?.addedToWatchList = 0
-                                        }else{
-                                            stock?.addedToWatchList = 1
-                                        }
-
-                                        if (stock?.addedToWatchList == 1){
+                                viewModel.addedStocks(stock!!).observe(viewLifecycleOwner,{list->
+                                    list?.let {s->
+                                        if (s.addedToWatchList == 1){
                                             imgAddToWatchlist.setImageResource(R.drawable.ic_check)
                                         }else{
                                             imgAddToWatchlist.setImageResource(R.drawable.ic_add_white)
                                         }
-
                                     } ?: kotlin.run {
                                         Timber.d("stock_debug local stocks null")
+                                        imgAddToWatchlist.setImageResource(R.drawable.ic_add_white)
                                     }
                                 })
 
                                 imgAddToWatchlist.setOnClickListener {
-                                    if (stock?.addedToWatchList == 1){
+                                    if (stock.addedToWatchList == 1){
                                         stock.addedToWatchList=0
                                         imgAddToWatchlist.setImageResource(R.drawable.ic_add_white)
                                     }else{
-                                        stock?.addedToWatchList = 1
+                                        stock.addedToWatchList = 1
                                         imgAddToWatchlist.setImageResource(R.drawable.ic_check)
                                     }
-                                    stock?.let { it1 -> viewModel.upsertStockData(it1) }
+                                    stock.let { it1 -> viewModel.upsertStockData(it1) }
                                 }
 
                             }
@@ -167,4 +159,14 @@ class StockDetailsActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object{
+        var stockSymbol = ""
+    }
+
 }

@@ -84,20 +84,31 @@
       <androidx.cardview.widget.CardView
           android:id="@+id/cardChart"
           android:layout_width="match_parent"
-          android:layout_height="380dp"
+          android:layout_height="?actionBarSize"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+          app:layout_constraintTop_toBottomOf="@+id/viewTop"
+          app:layout_constraintBottom_toTopOf="@id/viewBottom"
           android:layout_marginStart="20dp"
           android:layout_marginTop="15dp"
           android:layout_marginEnd="20dp"
           app:cardElevation="5dp"
+          android:translationZ="10dp"
           app:cardCornerRadius="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black">
+            android:background="@color/white">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="View detailed chart"
+              android:textColor="@color/black"
+              android:layout_centerInParent="true"
+              android:textSize="20sp"/>
+
         </RelativeLayout>
 
       </androidx.cardview.widget.CardView>
@@ -442,7 +453,7 @@
           android:layout_height="0dp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          android:background="#fff"
+          android:background="#efefef"
           app:layout_constraintVertical_weight="3"
           app:layout_constraintTop_toBottomOf="@+id/viewTop"
           app:layout_constraintBottom_toBottomOf="parent"
