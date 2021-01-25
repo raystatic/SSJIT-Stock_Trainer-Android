@@ -23,4 +23,7 @@ object Constants {
     const val STOCK_SYMBOL = "stock_symbol"
     const val ISLOCAL = "is_stock_local"
 
+    const val BUY = "stock_buy"
+    const val SELL = "stock_sell"
+
 }

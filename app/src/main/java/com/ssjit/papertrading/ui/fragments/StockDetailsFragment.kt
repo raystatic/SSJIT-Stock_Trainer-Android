@@ -51,6 +51,7 @@ class StockDetailsFragment: Fragment() {
         viewModel.getStockInfo(symbol = stockSymbol)
 
         binding.btnBuy.setOnClickListener {
+            BuySellDialogFragment.type = Constants.SELL
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 

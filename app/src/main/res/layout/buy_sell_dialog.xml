@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
+        android:id="@+id/relTop"
         android:padding="20dp">
 
         <TextView
@@ -125,7 +126,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_flash_green"
-                android:id="@+id/imgFlash"/>
+                android:id="@+id/imgFlash"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +166,7 @@
         app:inner_text_size="16sp"
         app:inner_text_bottom_padding="18dp"
         app:inner_text_top_padding="18dp"
-        app:inner_text_background="@drawable/shape_round"
+        app:inner_text_background="@drawable/shape_round_green"
         app:button_image_disabled="@drawable/ic_arrow_green"
         app:button_image_enabled="@drawable/ic_arrow_green"
         android:padding="10dp"
@@ -172,7 +174,7 @@
         app:button_right_padding="20dp"
         app:button_top_padding="20dp"
         app:button_bottom_padding="20dp"
-        app:button_background="@drawable/shape_button"
+        app:button_background="@drawable/shape_button_green"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"/>
 
