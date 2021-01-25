@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import app.futured.donut.DonutSection
 import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.stockdetail.StockData
@@ -28,6 +29,7 @@ class StockDetailsFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by activityViewModels<StockInfoViewModel>()
+    private lateinit var buySellDialogFragment: BuySellDialogFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = ActivityStockDetailsBinding.inflate(inflater, container, false)
@@ -41,10 +43,16 @@ class StockDetailsFragment: Fragment() {
 
         binding.imgBack.setOnClickListener {
 //            finish()
+            it.findNavController().navigate(R.id.action_stockDetailsFragment_to_watchlistFragment)
         }
+
+        buySellDialogFragment = BuySellDialogFragment()
 
         viewModel.getStockInfo(symbol = stockSymbol)
 
+        binding.btnBuy.setOnClickListener {
+            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
+        }
 
         subscribeToObservers()
 
@@ -60,39 +68,6 @@ class StockDetailsFragment: Fragment() {
     }
 
     private fun subscribeToObservers() {
-
-//        viewModel.currentStockData.observe(this,{
-//            it?.let { stock ->
-//                binding.apply {
-//                    tvCompanyName.text = stock?.companyName
-//                    tvSymbol.text = stock?.symbol
-//                    tvPrice.text = "₹${stock?.closePrice}"
-//                    tvOpen.text = stock?.open
-//                    tvHigh.text = stock?.dayHigh
-//                    tv52WKHigh.text = stock?.high52
-//                    tvPrevClose.text = stock?.previousClose
-//                    tvLow.text = stock?.dayLow
-//                    tv52WKLow.text = stock?.low52
-//                    tvVol.text = stock?.totalTradedVolume
-////                                tvMKTCap.text = ""
-////                                tvCapType.text = ""
-////                                tvPE.text = ""
-//
-//
-//                    imgAddToWatchlist.setOnClickListener {
-//                        if (stock?.addedToWatchList == 1){
-//                            stock.addedToWatchList=0
-//                            imgAddToWatchlist.setImageResource(R.drawable.ic_add_white)
-//                        }else{
-//                            stock?.addedToWatchList = 1
-//                            imgAddToWatchlist.setImageResource(R.drawable.ic_check)
-//                        }
-//                        stock?.let { it1 -> viewModel.upsertStockData(it1) }
-//                    }
-//
-//                }
-//            }
-//        })
 
         viewModel.stockInfoResponse.observe(viewLifecycleOwner, {
             when(it.status){

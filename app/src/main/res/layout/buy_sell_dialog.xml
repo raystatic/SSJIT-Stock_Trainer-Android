@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TCS"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:id="@+id/tvStockSymbol"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maximum Buy Capacity: 151"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/tvStockBuyQuantity"
+            android:layout_below="@id/tvStockSymbol"
+            android:layout_alignStart="@+id/tvStockSymbol"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:hint="Stock QTY"
+                android:textAlignment="center"
+                android:inputType="number"
+                android:background="@drawable/gray_box"
+                android:layout_marginBottom="10dp"/>
+
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Price"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tvPriceTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="190.2"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/tvPrice"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_flash_green"
+                android:id="@+id/imgFlash"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intraday"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.suke.widget.SwitchButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/toggleIntraday"
+                app:sb_shadow_color="@color/green"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.ebanx.swipebtn.SwipeButton
+        android:id="@+id/swipeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:inner_text="Slide to buy"
+        app:inner_text_color="@color/white"
+        app:inner_text_size="16sp"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_top_padding="18dp"
+        app:inner_text_background="@drawable/shape_round"
+        app:button_image_disabled="@drawable/ic_arrow_green"
+        app:button_image_enabled="@drawable/ic_arrow_green"
+        android:padding="10dp"
+        app:button_left_padding="20dp"
+        app:button_right_padding="20dp"
+        app:button_top_padding="20dp"
+        app:button_bottom_padding="20dp"
+        app:button_background="@drawable/shape_button"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
