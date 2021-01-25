@@ -132,6 +132,7 @@ class StockDetailsFragment: Fragment() {
                 Status.ERROR -> {
                     binding.root.showSnack(it.message.toString())
                 }
+
             }
         })
     }
