@@ -1,6 +1,5 @@
 package com.ssjit.papertrading.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.DebounceQueryTextListener
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.ViewExtension.showSnack
-import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.SearchItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint

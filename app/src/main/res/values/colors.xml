@@ -22,5 +22,7 @@
     <color name="app_puple">#91818A</color>
     <color name="brown">#2D2E29</color>
     <color name="yellow">#F9E603</color>
+    <color name="pink">#FF74E1</color>
+    <color name="gray">#C0C0C0</color>
 
 </resources>

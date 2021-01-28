@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:clipChildren="false"
+            android:background="@color/white"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TCS Consultancy Company"
+                android:textColor="@color/primary_grey"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                android:textSize="16sp"
+
+                android:id="@+id/tvCompany"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvCompany"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Open"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvOpenTitle"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvOpenTitle"
+                app:layout_constraintStart_toStartOf="@id/tvOpenTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvOpen"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvCompany"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Upper Circuit"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvUpperCircuitTitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvUpperCircuitTitle"
+                app:layout_constraintStart_toStartOf="@id/tvUpperCircuitTitle"
+                app:layout_constraintEnd_toEndOf="@id/tvUpperCircuitTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvUpperCircuit"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Volume"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/tvCompany"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvVolumeTitle"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvVolumeTitle"
+                app:layout_constraintEnd_toEndOf="@id/tvVolumeTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvVolume"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvOpen"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Close"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvCloseTitle"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvCloseTitle"
+                app:layout_constraintStart_toStartOf="@id/tvCloseTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvClose"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvUpperCircuit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Lower Circuit"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvLowerCircuitTitle"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvLowerCircuitTitle"
+                app:layout_constraintStart_toStartOf="@id/tvLowerCircuitTitle"
+                app:layout_constraintEnd_toEndOf="@id/tvLowerCircuitTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvLowerCircuit"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvVolume"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="ATP"
+                android:textColor="@color/primary_grey"
+                android:id="@+id/tvATPTitle"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvATPTitle"
+                app:layout_constraintEnd_toEndOf="@id/tvATPTitle"
+                android:text="1,465.10"
+                android:textColor="@color/black"
+                android:id="@+id/tvATP"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvClose"
+                android:layout_marginTop="20dp"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/blue_green_gradient"
+                android:splitTrack="false"
+                android:id="@+id/lowHighSeekbar"
+                android:focusable="false"
+                android:thumbOffset="0dp"
+                android:clickable="false"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/lowHighSeekbar"
+                app:layout_constraintStart_toStartOf="@id/lowHighSeekbar"
+                android:text="1,457.65"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvLow"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/lowHighSeekbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Today's Low/High"
+                android:textColor="@color/primary_grey"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/lowHighSeekbar"
+                app:layout_constraintEnd_toEndOf="@id/lowHighSeekbar"
+                android:text="1,457.65"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvHigh"/>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvLow"
+                android:layout_marginTop="20dp"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/blue_pink_gradient"
+                android:splitTrack="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:progress="100"
+                android:thumbOffset="0dp"
+                android:id="@+id/seekbar52"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar52"
+                app:layout_constraintStart_toStartOf="@id/seekbar52"
+                android:text="1,457.65"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv52Low"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="52 Week Low/High"
+                android:textColor="@color/primary_grey"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar52"
+                app:layout_constraintEnd_toEndOf="@id/seekbar52"
+                android:text="1,457.65"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv52High"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnSell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/green"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:cornerRadius="25dp"
+        app:elevation="10dp"
+        android:text="BUY"
+        app:icon="@drawable/ic_add"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/btnBuy"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/primary_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        app:cornerRadius="25dp"
+        app:elevation="10dp"
+        android:text="SELL"
+        app:icon="@drawable/ic_remove"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/btnSell"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
