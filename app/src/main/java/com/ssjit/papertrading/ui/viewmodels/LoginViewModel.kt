@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
+import com.ssjit.papertrading.data.models.User
 import com.ssjit.papertrading.data.repositories.LoginRepository
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Resource
@@ -34,6 +35,10 @@ class LoginViewModel @ViewModelInject constructor(
             e.printStackTrace()
             _loginResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG, null))
         }
+    }
+
+    fun insertUser(user: User) = viewModelScope.launch {
+        repository.insertUser(user)
     }
 
 }

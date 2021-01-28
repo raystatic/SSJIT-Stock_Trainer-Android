@@ -38,4 +38,8 @@ object LocalDBModule {
     @Provides
     fun providesBSEDao(db:RoomDB) = db.getBSEDao()
 
+    @Singleton
+    @Provides
+    fun providesUserDao(db:RoomDB) = db.getUserDao()
+
 }

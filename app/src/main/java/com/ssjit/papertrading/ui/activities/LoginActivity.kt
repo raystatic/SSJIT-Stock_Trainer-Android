@@ -78,13 +78,15 @@ class LoginActivity : AppCompatActivity() {
                                 prefManager.saveString(Constants.KEY_USER_AVATAR, user.avatar)
                                 prefManager.saveString(Constants.KEY_USER_ID, user.id)
 
+                                vm.insertUser(user)
+
                                 startActivity(Intent(this,HomeActivity::class.java))
                                 finish()
                             }
                         }else{
                             binding.root.showSnack(res.message ?: Constants.SOMETHING_WENT_WRONG)
-                            startActivity(Intent(this,HomeActivity::class.java))
-                            finish()
+//                            startActivity(Intent(this,HomeActivity::class.java))
+//                            finish()
                         }
                     }
                 }
@@ -109,13 +111,16 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        if (prefManager.getString(Constants.KEY_USER_ID).isNullOrEmpty()){
-            val loginRequest = LoginRequest(name = userName, email = email, avatar = avatar)
-            vm.login(loginRequest)
-        }else{
-            startActivity(Intent(this,HomeActivity::class.java))
-            finish()
-        }
+        val loginRequest = LoginRequest(name = userName, email = email, avatar = avatar)
+        vm.login(loginRequest)
+
+//        if (prefManager.getString(Constants.KEY_USER_ID).isNullOrEmpty()){
+//            val loginRequest = LoginRequest(name = userName, email = email, avatar = avatar)
+//            vm.login(loginRequest)
+//        }else{
+////            startActivity(Intent(this,HomeActivity::class.java))
+////            finish()
+//        }
 
     }
 

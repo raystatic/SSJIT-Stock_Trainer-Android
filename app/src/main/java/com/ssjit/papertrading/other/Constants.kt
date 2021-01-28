@@ -26,4 +26,6 @@ object Constants {
     const val BUY = "stock_buy"
     const val SELL = "stock_sell"
 
+    const val RUPEE_SYMBOL ="₹"
+
 }
