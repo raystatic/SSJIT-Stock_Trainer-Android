@@ -50,7 +50,7 @@ class ProfileFragment: Fragment() {
             adapter = profileItemAdapter
         }
 
-        viewmodel.user.observe(viewLifecycleOwner, Observer {
+        viewmodel.user.observe(viewLifecycleOwner, {
             it?.let { user->
                 binding.apply {
                     Glide.with(requireContext())
@@ -63,8 +63,8 @@ class ProfileFragment: Fragment() {
                     tvUserBalance.text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.balance)}"
 
                     val list = mutableListOf<ProfileItem>()
-                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_PROFIT,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.profit)}", caption = Constants.PROFILE_NET_PROFIT))
-                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_LOSS,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.loss)}", caption = Constants.PROFILE_NET_LOSS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_PROFIT,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount("${user.profit.toFloat()}")}", caption = Constants.PROFILE_NET_PROFIT))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_LOSS,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount("${user.loss.toFloat()}")}", caption = Constants.PROFILE_NET_LOSS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_POSITIVE_TRANSACTIONS,text = "${user.positive_transactions}", caption = Constants.PROFILE_POSITIVE_TRANSACTIONS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_NEGATIVE_TRANSACTIONS,text = "${user.negative_transactions}", caption = Constants.PROFILE_NEGATIVE_TRANSACTIONS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_INVITE_FRIENDS,image = R.drawable.ic_group, caption = Constants.PROFILE_INVITE_FRIENDS))
