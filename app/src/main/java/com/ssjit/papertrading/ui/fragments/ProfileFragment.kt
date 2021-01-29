@@ -39,7 +39,7 @@ class ProfileFragment: Fragment() {
 
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.app_puple)
 
-        profileItemAdapter = ProfileItemAdapter {
+        profileItemAdapter = ProfileItemAdapter(requireContext()) {
             it?.let {
 
             }
@@ -62,12 +62,15 @@ class ProfileFragment: Fragment() {
                     tvUserName.text = user.name
                     tvUserBalance.text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.balance)}"
 
-                    val profileItem = ProfileItem(itemType = "demo",text = user.profit,caption = "Total net profit")
                     val list = mutableListOf<ProfileItem>()
-                    for (i in 0 until 10){
-                        list.add(profileItem)
-                    }
-
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_PROFIT,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.profit)}", caption = Constants.PROFILE_NET_PROFIT))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_LOSS,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.loss)}", caption = Constants.PROFILE_NET_LOSS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_POSITIVE_TRANSACTIONS,text = "${user.positive_transactions}", caption = Constants.PROFILE_POSITIVE_TRANSACTIONS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NEGATIVE_TRANSACTIONS,text = "${user.negative_transactions}", caption = Constants.PROFILE_NEGATIVE_TRANSACTIONS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_INVITE_FRIENDS,image = R.drawable.ic_group, caption = Constants.PROFILE_INVITE_FRIENDS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_MARKET_NEWS,image = R.drawable.ic_icons8_news, caption = Constants.PROFILE_MARKET_NEWS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_PRIVACY_POLICY,image = R.drawable.ic_privacy_policy, caption = Constants.PROFILE_PRIVACY_POLICY))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_WHATSAPP_SUPPORT,image = R.drawable.ic_whatsapp, caption = Constants.PROFILE_WHATSAPP_SUPPORT))
                     profileItemAdapter.submitData(list)
 
                 }

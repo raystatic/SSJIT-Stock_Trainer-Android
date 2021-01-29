@@ -28,4 +28,13 @@ object Constants {
 
     const val RUPEE_SYMBOL ="₹"
 
+    const val PROFILE_NET_PROFIT = "Total Net Profit"
+    const val PROFILE_NET_LOSS = "Total Net Loss"
+    const val PROFILE_POSITIVE_TRANSACTIONS = "Positive Transactions"
+    const val PROFILE_NEGATIVE_TRANSACTIONS = "Negative Transactions"
+    const val PROFILE_INVITE_FRIENDS = "Invite Friends"
+    const val PROFILE_MARKET_NEWS = "Market News"
+    const val PROFILE_PRIVACY_POLICY = "Privacy Policy"
+    const val PROFILE_WHATSAPP_SUPPORT = "WhatsApp Support"
+
 }
