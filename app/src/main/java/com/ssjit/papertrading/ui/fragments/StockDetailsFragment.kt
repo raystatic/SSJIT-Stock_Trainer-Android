@@ -4,25 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import app.futured.donut.DonutSection
 import com.ssjit.papertrading.R
-import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.databinding.ActivityStockDetailsBinding
-import com.ssjit.papertrading.databinding.FragmentHoldingBinding
-import com.ssjit.papertrading.other.Constants
-import com.ssjit.papertrading.other.Status
-import com.ssjit.papertrading.other.ViewExtension.showSnack
-import com.ssjit.papertrading.ui.adapters.OrdersPagerAdapter
 import com.ssjit.papertrading.ui.adapters.StockPagerAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class StockDetailsFragment: Fragment() {

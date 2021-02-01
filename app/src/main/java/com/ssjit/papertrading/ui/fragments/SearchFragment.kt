@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ssjit.papertrading.R
 import com.ssjit.papertrading.databinding.FragmentSearchBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.DebounceQueryTextListener
 import com.ssjit.papertrading.other.Status
-import com.ssjit.papertrading.other.ViewExtension.showSnack
+import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.SearchItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.SearchViewModel

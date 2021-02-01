@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task
 import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.databinding.ActivityLoginBinding
-import com.ssjit.papertrading.other.ViewExtension.showSnack
+import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.PrefManager
 import com.ssjit.papertrading.other.Status

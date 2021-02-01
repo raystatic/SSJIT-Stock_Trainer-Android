@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.ssjit.papertrading.data.local.BSEDao
 import com.ssjit.papertrading.data.local.LocalStocksDao
 import com.ssjit.papertrading.data.local.NSEDao
+import com.ssjit.papertrading.data.local.UserDao
 import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
 import com.ssjit.papertrading.data.models.stockdetail.StockData
@@ -15,7 +16,8 @@ class StockInfoRepository @Inject constructor(
     private val apiHelper: ApiHelper,
     private val localStocksDao: LocalStocksDao,
     private val nseDao: NSEDao,
-    private val bseDao: BSEDao
+    private val bseDao: BSEDao,
+    private val userDao: UserDao
 ) {
 
     suspend fun getStockInfo(symbol:String) = apiHelper.getStockInfo(symbol)
@@ -38,6 +40,8 @@ class StockInfoRepository @Inject constructor(
     suspend fun deleteAllNSE() = nseDao.deleteAllNSE()
     suspend fun deleteAllBSE() = bseDao.deleteAllBSE()
     fun getStockBySymbol(symbol: String) = localStocksDao.getStockBySymbol(symbol)
+
+    fun getUser() = userDao.getUsers()
 
 
 }

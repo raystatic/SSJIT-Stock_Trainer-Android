@@ -39,7 +39,7 @@ object Utility {
             if (!it.isNaN()) price += it
         }
 
-        return "${Constants.RUPEE_SYMBOL} $price"
+        return price.toString()
 
     }
 

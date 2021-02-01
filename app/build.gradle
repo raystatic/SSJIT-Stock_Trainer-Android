@@ -122,4 +122,7 @@ dependencies {
     //switch
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 
+    //loading button
+    implementation 'com.github.koushikcse:LoadingButton:1.7'
+
 }

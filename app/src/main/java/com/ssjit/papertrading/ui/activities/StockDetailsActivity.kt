@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.databinding.ActivityStockDetailsBinding
@@ -12,7 +11,7 @@ import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.ShowAlertDialog
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.Utility
-import com.ssjit.papertrading.other.ViewExtension.showSnack
+import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.ui.adapters.StockPagerAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -108,7 +107,9 @@ class StockDetailsActivity : AppCompatActivity() {
                                     viewmodel.setCurrentStock(stock)
                                     binding.apply {
                                         tvSymbol.text = stock.symbol
-                                        tvPrice.text = Utility.evaluatePrice(stock.buyPrice1, stock.buyPrice2, stock.buyPrice3, stock.buyPrice4, stock.buyPrice5)
+                                        tvPrice.text = Utility.formatAmount(
+                                            Utility.evaluatePrice(stock.buyPrice1, stock.buyPrice2, stock.buyPrice3, stock.buyPrice4, stock.buyPrice5)
+                                        )
                                     }
                                 }
                             }

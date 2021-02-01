@@ -24,6 +24,7 @@ class StockInfoViewModel @ViewModelInject constructor(
 
     val stockInfoResponse get() = _stockInfoResponse
 
+    val user = repository.getUser()
 
     private val _currentStock = MutableLiveData<StockData>()
 
