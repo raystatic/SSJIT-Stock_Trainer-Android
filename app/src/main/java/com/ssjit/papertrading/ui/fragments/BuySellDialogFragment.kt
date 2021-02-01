@@ -37,6 +37,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
             lp.gravity = Gravity.CENTER_HORIZONTAL
             binding.swipeBtn.layoutParams = lp
             binding.swipeBtn.setButtonBackground(ContextCompat.getDrawable(requireContext(),R.drawable.transaparent))
+            binding.swipeBtn.setText("")
             if (type == Constants.BUY){
                 binding.swipeBtn.setSlidingButtonBackground(ContextCompat.getDrawable(requireContext(),R.drawable.ic_checked_green))
             }else{

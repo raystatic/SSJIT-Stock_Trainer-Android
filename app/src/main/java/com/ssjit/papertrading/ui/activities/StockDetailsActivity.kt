@@ -9,6 +9,7 @@ import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.databinding.ActivityStockDetailsBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.ShowAlertDialog
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.other.Utility
 import com.ssjit.papertrading.other.ViewExtension.showSnack
@@ -86,7 +87,24 @@ class StockDetailsActivity : AppCompatActivity() {
                     it.data?.let { res->
                         if (!res.error){
                             res.data?.let { quote ->
-                                quote.data?.get(0)?.let { stock->
+                                if (quote.data.isNullOrEmpty()){
+                                    ShowAlertDialog(
+                                        this,
+                                        Constants.NO_DATA_FOUND_TITLE,
+                                        Constants.NO_DATA_FOUND_MESSAGE,
+                                        positive = "Okay",
+                                        negative = null,
+                                        onPositiveButtonClicked = {
+                                            finish()
+                                        },
+                                        onNegativeButtonClicked = {
+
+                                        }
+                                    )
+
+                                    return@observe
+                                }
+                                quote.data[0].let { stock->
                                     viewmodel.setCurrentStock(stock)
                                     binding.apply {
                                         tvSymbol.text = stock.symbol

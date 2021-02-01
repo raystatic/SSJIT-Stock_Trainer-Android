@@ -37,4 +37,7 @@ object Constants {
     const val PROFILE_PRIVACY_POLICY = "Privacy Policy"
     const val PROFILE_WHATSAPP_SUPPORT = "WhatsApp Support"
 
+    const val NO_DATA_FOUND_TITLE=  "Data not found"
+    const val NO_DATA_FOUND_MESSAGE = "Data for this symbol is not found"
+
 }
