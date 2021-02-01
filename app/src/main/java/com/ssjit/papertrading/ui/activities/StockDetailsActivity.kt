@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import com.ssjit.papertrading.R
+import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.databinding.ActivityStockDetailsBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Status
@@ -50,9 +51,35 @@ class StockDetailsActivity : AppCompatActivity() {
 
         subscribeToObservers()
 
+        binding.imgWatchlist.setOnClickListener {
+            selectedStock?.let {
+                if (it.addedToWatchList == 0)
+                    it.addedToWatchList = 1
+                else
+                    it.addedToWatchList = 0
+                viewmodel.upsertStockData(it)
+            }
+        }
+
     }
 
     private fun subscribeToObservers() {
+
+        viewmodel.watchList.observe(this,{
+            it.let { watchlist->
+                viewmodel.currentStockData.observe(this,{current->
+                    current?.let { currentStock->
+                        selectedStock = currentStock
+                        if (watchlist.filter { it.symbol == currentStock.symbol }.isNullOrEmpty()){
+                            binding.imgWatchlist.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add_white))
+                        }else{
+                            binding.imgWatchlist.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_check))
+                        }
+                    }
+                })
+            }
+        })
+
         viewmodel.stockInfoResponse.observe(this, {
             when(it.status){
                 Status.SUCCESS ->{
@@ -82,4 +109,9 @@ class StockDetailsActivity : AppCompatActivity() {
             }
         })
     }
+
+    companion object{
+        var selectedStock:StockData?=null
+    }
+
 }
