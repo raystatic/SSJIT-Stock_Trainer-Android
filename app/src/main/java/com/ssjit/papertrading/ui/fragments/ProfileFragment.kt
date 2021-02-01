@@ -60,11 +60,11 @@ class ProfileFragment: Fragment() {
                             .into(imgProfile)
 
                     tvUserName.text = user.name
-                    tvUserBalance.text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount(user.balance)}"
+                    tvUserBalance.text = Utility.formatAmount("${user.balance.toFloat()}")
 
                     val list = mutableListOf<ProfileItem>()
-                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_PROFIT,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount("${user.profit.toFloat()}")}", caption = Constants.PROFILE_NET_PROFIT))
-                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_LOSS,text = "${Constants.RUPEE_SYMBOL} ${Utility.formatAmount("${user.loss.toFloat()}")}", caption = Constants.PROFILE_NET_LOSS))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_PROFIT,text = Utility.formatAmount("${user.profit.toFloat()}"), caption = Constants.PROFILE_NET_PROFIT))
+                    list.add(ProfileItem(itemType = Constants.PROFILE_NET_LOSS,text = Utility.formatAmount("${user.loss.toFloat()}"), caption = Constants.PROFILE_NET_LOSS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_POSITIVE_TRANSACTIONS,text = "${user.positive_transactions}", caption = Constants.PROFILE_POSITIVE_TRANSACTIONS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_NEGATIVE_TRANSACTIONS,text = "${user.negative_transactions}", caption = Constants.PROFILE_NEGATIVE_TRANSACTIONS))
                     list.add(ProfileItem(itemType = Constants.PROFILE_INVITE_FRIENDS,image = R.drawable.ic_group, caption = Constants.PROFILE_INVITE_FRIENDS))

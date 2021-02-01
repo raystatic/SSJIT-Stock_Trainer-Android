@@ -24,14 +24,13 @@ class StockInfoViewModel @ViewModelInject constructor(
 
     val stockInfoResponse get() = _stockInfoResponse
 
+
     private val _currentStock = MutableLiveData<StockData>()
 
-    val currentStockData get() = _currentStock
+    val currentStockData:LiveData<StockData> get() = _currentStock
 
-    fun getStockBySymbol(symbol: String) = viewModelScope.launch {
-        repository.getStockBySymbol(symbol).also {
-            _currentStock.postValue(it.value?.get(0))
-        }
+    fun setCurrentStock(stockData: StockData) = viewModelScope.launch {
+        _currentStock.postValue(stockData)
     }
 
     val currentWatchList = ArrayList<StockData>()

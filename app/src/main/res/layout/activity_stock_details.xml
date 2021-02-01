@@ -26,7 +26,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TCS"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_marginStart="10dp"
@@ -36,36 +35,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tata consultancy company"
-        android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textColor="@color/primary_green"
+        android:textSize="14sp"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/imgBack"
-        android:id="@+id/tvCompany"
+        android:id="@+id/tvPrice"
         android:layout_below="@+id/tvSymbol"
-        android:layout_toStartOf="@+id/tvChange"
         android:marqueeRepeatLimit="marquee_forever"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1466.60"
-        android:textColor="@color/primary_green"
-        android:textSize="16sp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/tvPrice"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+23.30 (1.61%)"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:layout_alignEnd="@+id/tvPrice"
-        android:id="@+id/tvChange"
-        android:layout_below="@+id/tvPrice"
-        />
 
 
   </RelativeLayout>

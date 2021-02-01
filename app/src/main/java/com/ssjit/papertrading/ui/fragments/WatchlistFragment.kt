@@ -1,5 +1,6 @@
 package com.ssjit.papertrading.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.indices.BSEIndex
 import com.ssjit.papertrading.data.models.indices.NSEIndex
 import com.ssjit.papertrading.databinding.FragmentWatchlistBinding
+import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.WatchlistAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,8 +55,11 @@ class WatchlistFragment: Fragment() {
 
         watchlistAdapter = WatchlistAdapter {
             it?.let {
-                StockDetailsFragment.stockSymbol = it
-                binding.root.findNavController().navigate(R.id.action_watchlistFragment_to_stockDetailsFragment)
+                //StockDetailsFragment.stockSymbol = it
+                //binding.root.findNavController().navigate(R.id.action_watchlistFragment_to_stockDetailsFragment)
+                val intent = Intent(requireContext(), StockDetailsActivity::class.java)
+                intent.putExtra(Constants.STOCK_SYMBOL,it)
+                startActivity(intent)
             }
         }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ssjit.papertrading" >
+    package="com.ssjit.papertrading">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SSJIT_STOCK_TRAINER"
-        android:usesCleartextTraffic="true" >
-        <activity android:name=".ui.activities.StockDetailsActivity" >
-        </activity>
-        <activity android:name=".ui.activities.HomeActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.activities.LoginActivity" >
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activities.StockDetailsActivity"></activity>
+        <activity
+            android:name=".ui.activities.HomeActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
