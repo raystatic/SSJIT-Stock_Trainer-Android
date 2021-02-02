@@ -6,6 +6,7 @@ import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
+import com.ssjit.papertrading.data.models.transaction.GetOrdersResponse
 import retrofit2.Response
 import retrofit2.http.POST
 
@@ -18,5 +19,7 @@ interface ApiHelper {
     suspend fun getStockInfo(symbol:String):Response<StockDetailResponse>
 
     suspend fun createOrder(createOrderRequest: CreateOrderRequest):Response<CreateOrderResponse>
+
+    suspend fun getOrders(userId:String):Response<GetOrdersResponse>
 
 }

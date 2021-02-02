@@ -40,4 +40,7 @@ object Constants {
     const val NO_DATA_FOUND_TITLE=  "Data not found"
     const val NO_DATA_FOUND_MESSAGE = "Data for this symbol is not found"
 
+    const val PENDING = "PENDING"
+    const val EXECUTED = "EXECUTED"
+
 }

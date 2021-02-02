@@ -42,4 +42,8 @@ object LocalDBModule {
     @Provides
     fun providesUserDao(db:RoomDB) = db.getUserDao()
 
+    @Singleton
+    @Provides
+    fun providesOrdersDao(db: RoomDB) = db.getOrdersDao()
+
 }

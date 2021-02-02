@@ -21,8 +21,6 @@ class StockOverviewFragment: Fragment() {
     private var _binding: FragmentStockOverviewBinding?=null
     private val binding get() = _binding!!
 
-    private lateinit var buySellDialogFragment: BuySellDialogFragment
-
     private val viewmodel by activityViewModels<StockInfoViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,14 +31,14 @@ class StockOverviewFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        buySellDialogFragment = BuySellDialogFragment()
-
         binding.btnBuy.setOnClickListener {
+            val buySellDialogFragment = BuySellDialogFragment()
             BuySellDialogFragment.type = Constants.BUY
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 
         binding.btnSell.setOnClickListener {
+            val buySellDialogFragment = BuySellDialogFragment()
             BuySellDialogFragment.type = Constants.SELL
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }

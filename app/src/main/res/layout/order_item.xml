@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tvSymbol"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tvCurrentPrice"
+            android:textSize="14sp"
+            android:layout_below="@+id/tvSymbol"
+            android:maxWidth="200dp"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="2"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_flash_active"
+            android:layout_below="@id/tvCurrentPrice"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/imgIntraday"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Intraday"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_toEndOf="@+id/imgIntraday"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:id="@+id/tvOrderAmount"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Order Amount: "
+            android:textColor="@color/black"
+            android:id="@+id/tvOrderAmountTitle"
+            android:textSize="14sp"
+            android:layout_toStartOf="@+id/tvOrderAmount"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tvOrderAmount"
+            android:id="@+id/tvNoOfShares"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvOrderAmountTitle"
+            android:text="No. of Shares: "
+            android:textColor="@color/black"
+            android:id="@+id/tvNoOfSharesTitle"
+            android:layout_toStartOf="@+id/tvNoOfShares"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNoOfShares"
+            android:textSize="14sp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/logo_green"
+            android:id="@+id/tvOrderPrice"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNoOfSharesTitle"
+            android:text="Order Price: "
+            android:textColor="@color/black"
+            android:id="@+id/tvOrderPriceTitle"
+            android:layout_toStartOf="@+id/tvOrderPrice"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvOrderPrice"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCurrentPrice"
+            android:textSize="14sp"
+            android:textColor="@color/blue"
+            android:layout_toEndOf="@+id/tvOrderStatusTitle"
+            android:id="@+id/tvOrderStatus"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCurrentPrice"
+            android:text="Status: "
+            android:textColor="@color/black"
+            android:id="@+id/tvOrderStatusTitle"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvCurrentPrice"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -27,7 +27,7 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/ordersPager"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/relTopBar"
         app:layout_constraintStart_toStartOf="parent"

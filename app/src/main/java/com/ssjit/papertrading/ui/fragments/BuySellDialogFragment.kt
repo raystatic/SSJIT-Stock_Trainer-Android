@@ -100,7 +100,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                             binding.loadingButton.isVisible = false
                         }else{
                             Timber.d("Error creating order: ${res.message}")
-                            requireContext().showToast(Constants.SOMETHING_WENT_WRONG)
+                            requireContext().showToast(res.message ?: Constants.SOMETHING_WENT_WRONG)
                             binding.imgSuccess.isVisible = false
                             binding.loadingButton.isVisible = true
                         }

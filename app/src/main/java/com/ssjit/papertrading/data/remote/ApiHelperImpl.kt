@@ -6,6 +6,7 @@ import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
+import com.ssjit.papertrading.data.models.transaction.GetOrdersResponse
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -26,5 +27,9 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun createOrder(createOrderRequest: CreateOrderRequest): Response<CreateOrderResponse> {
         return apiService.createOrder(createOrderRequest)
+    }
+
+    override suspend fun getOrders(userId: String): Response<GetOrdersResponse> {
+        return apiService.getOrders(userId)
     }
 }
