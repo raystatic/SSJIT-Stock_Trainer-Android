@@ -17,6 +17,7 @@ import com.ssjit.papertrading.databinding.FragmentPortfolioBinding
 import com.ssjit.papertrading.ui.adapters.OrderItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OrdersPendingFragment: Fragment() {
@@ -60,6 +61,7 @@ class OrdersPendingFragment: Fragment() {
                    }else{
                        tvEmpty.isVisible = false
                        rvPendingOrders.isVisible = true
+                       Timber.d("orders_size: ${orders.size}")
                        orderItemAdapter.submitData(orders)
                    }
                }

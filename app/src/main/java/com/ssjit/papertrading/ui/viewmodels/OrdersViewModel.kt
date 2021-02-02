@@ -51,4 +51,8 @@ class OrdersViewModel @ViewModelInject constructor(
 
     val user = repository.getUser()
 
+    fun deleteAllOrders() = viewModelScope.launch {
+        repository.deleteAllOrders()
+    }
+
 }

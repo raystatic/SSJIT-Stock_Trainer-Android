@@ -51,6 +51,7 @@ class OrdersFragment: Fragment() {
                     it.data?.let { res->
                         if (!res.error){
                             res.orders?.let { orders->
+                                viewmodel.deleteAllOrders()
                                 orders.forEach { order->
                                     viewmodel.insertOrder(order)
                                 }

@@ -16,10 +16,10 @@ interface OrdersDao {
     @Query("SELECT * FROM orders")
     fun getAllOrders():LiveData<List<Order>>
 
-    @Query("SELECT * FROM orders WHERE status=:pending")
+    @Query("SELECT * FROM orders WHERE status=:pending ORDER BY order_created_at DESC")
     fun getPendingOrders(pending:String):LiveData<List<Order>>
 
-    @Query("SELECT * FROM orders WHERE status=:executed")
+    @Query("SELECT * FROM orders WHERE status=:executed ORDER BY order_created_at DESC")
     fun getExecutedOrders(executed:String):LiveData<List<Order>>
 
     @Query("DELETE FROM orders")
