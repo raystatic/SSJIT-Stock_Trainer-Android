@@ -4,6 +4,8 @@ import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
+import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
+import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -20,5 +22,9 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun getStockInfo(symbol: String): Response<StockDetailResponse> {
         return apiService.getStockInfo(symbol)
+    }
+
+    override suspend fun createOrder(createOrderRequest: CreateOrderRequest): Response<CreateOrderResponse> {
+        return apiService.createOrder(createOrderRequest)
     }
 }

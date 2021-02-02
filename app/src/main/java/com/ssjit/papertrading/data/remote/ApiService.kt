@@ -4,6 +4,8 @@ import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
+import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
+import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,5 +22,10 @@ interface ApiService {
 
     @GET("stock/stock_info")
     suspend fun getStockInfo(@Query("symbol") symbol:String):Response<StockDetailResponse>
+
+    @POST("stock/transaction")
+    suspend fun createOrder(
+        @Body createOrderRequest: CreateOrderRequest
+    ):Response<CreateOrderResponse>
 
 }

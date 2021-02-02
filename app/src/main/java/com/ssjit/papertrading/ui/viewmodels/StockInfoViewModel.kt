@@ -9,6 +9,8 @@ import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
+import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
+import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
 import com.ssjit.papertrading.data.repositories.StockInfoRepository
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Resource
@@ -81,6 +83,26 @@ class StockInfoViewModel @ViewModelInject constructor(
 
     fun deleteStockBySymbol(stockData:StockData) = viewModelScope.launch {
         repository.deleteStockBySymbol(stockData.symbol)
+    }
+
+    private val _createOrderResponse = MutableLiveData<Resource<CreateOrderResponse>>()
+
+    val createOrderResponse:LiveData<Resource<CreateOrderResponse>> get() = _createOrderResponse
+
+    fun createOrderRequest(createOrderRequest: CreateOrderRequest) = viewModelScope.launch {
+        try {
+            _createOrderResponse.postValue(Resource.loading(null))
+            repository.createOrder(createOrderRequest).also {
+                if (it.isSuccessful){
+                    _createOrderResponse.postValue(Resource.success(it.body()))
+                }else{
+                    _createOrderResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG,null))
+                }
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            _createOrderResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG,null))
+        }
     }
 
 

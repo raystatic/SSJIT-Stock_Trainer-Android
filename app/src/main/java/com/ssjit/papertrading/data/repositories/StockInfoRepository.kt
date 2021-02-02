@@ -8,6 +8,7 @@ import com.ssjit.papertrading.data.local.UserDao
 import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
 import com.ssjit.papertrading.data.models.stockdetail.StockData
+import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.remote.ApiHelper
 import timber.log.Timber
 import javax.inject.Inject
@@ -42,6 +43,9 @@ class StockInfoRepository @Inject constructor(
     fun getStockBySymbol(symbol: String) = localStocksDao.getStockBySymbol(symbol)
 
     fun getUser() = userDao.getUsers()
+
+
+    suspend fun createOrder(createOrderRequest: CreateOrderRequest) = apiHelper.createOrder(createOrderRequest)
 
 
 }
