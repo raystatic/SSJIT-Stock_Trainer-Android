@@ -23,8 +23,8 @@ object Constants {
     const val STOCK_SYMBOL = "stock_symbol"
     const val ISLOCAL = "is_stock_local"
 
-    const val BUY = "stock_buy"
-    const val SELL = "stock_sell"
+    const val BUY_STOCK = "stock_buy"
+    const val SELL_STOCK = "stock_sell"
 
     const val RUPEE_SYMBOL ="₹"
 
@@ -42,5 +42,8 @@ object Constants {
 
     const val PENDING = "PENDING"
     const val EXECUTED = "EXECUTED"
+
+    const val BUY = "BUY"
+    const val SELL = "SELL"
 
 }

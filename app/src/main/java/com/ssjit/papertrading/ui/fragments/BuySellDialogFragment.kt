@@ -1,19 +1,15 @@
 package com.ssjit.papertrading.ui.fragments
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TimePicker
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ssjit.papertrading.R
-import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.databinding.BuySellDialogBinding
 import com.ssjit.papertrading.other.Constants
@@ -24,7 +20,6 @@ import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.buy_sell_dialog.*
 import timber.log.Timber
-import kotlin.math.max
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
@@ -73,7 +68,8 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                         orderCreatedAt = "${System.currentTimeMillis()}",
                         userId = userId,
                         orderAmount = amount.toString(),
-                        intraday = toggleIntraday.isChecked
+                        intraday = toggleIntraday.isChecked,
+                        type = Constants.BUY
                     )
 
                     viewmodel.createOrderRequest(createOrderRequest)
@@ -155,7 +151,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
             binding.loadingButton.isVisible = true
             binding.imgSuccess.isVisible = false
 
-            if (type == Constants.BUY){
+            if (type == Constants.BUY_STOCK){
                 relTop.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
                 imgFlash.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_flash_green))
 
@@ -202,7 +198,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
         var symbol = ""
         var price:Float?=null
         var maxCapacity:Int?=null
-        var type = Constants.BUY
+        var type = Constants.BUY_STOCK
     }
 
 }

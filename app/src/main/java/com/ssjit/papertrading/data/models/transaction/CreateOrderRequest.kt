@@ -6,5 +6,6 @@ data class CreateOrderRequest(
     val orderCreatedAt:String,
     val userId:String,
     val orderAmount:String,
-    val intraday:Boolean
+    val intraday:Boolean,
+    val type:String
 )

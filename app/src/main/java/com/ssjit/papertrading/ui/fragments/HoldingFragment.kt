@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ssjit.papertrading.databinding.FragmentHoldingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HoldingFragment: Fragment() {
 
     private var _binding: FragmentHoldingBinding?=null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHoldingBinding.inflate(inflater, container, false)
