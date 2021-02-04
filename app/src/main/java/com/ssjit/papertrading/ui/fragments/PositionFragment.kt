@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentPositionBinding
 import com.ssjit.papertrading.ui.adapters.PortfolioItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_position.*
 
 @AndroidEntryPoint
 class PositionFragment: Fragment() {
@@ -36,6 +38,8 @@ class PositionFragment: Fragment() {
         binding.rvPositions.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = portfolioAdapter
+            val dividerItemDecoration = DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL)
+            addItemDecoration(dividerItemDecoration)
         }
 
         subscribeToObservers()
@@ -47,6 +51,7 @@ class PositionFragment: Fragment() {
                 binding.rvPositions.isVisible = it.isNotEmpty()
                 binding.tvEmpty.isVisible = it.isEmpty()
                 portfolioAdapter.submitData(it)
+                binding.rvPositions.scrollToPosition(0)
             }
         })
 

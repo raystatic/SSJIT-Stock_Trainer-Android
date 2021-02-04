@@ -16,7 +16,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BUY"
                 android:textColor="@color/white"
                 android:background="@color/primaryblue"
                 android:paddingTop="2dp"
@@ -29,7 +28,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="POWERGRID"
                 android:textColor="@color/black"
                 android:layout_toEndOf="@+id/tvType"
                 android:layout_marginStart="5dp"
@@ -39,7 +37,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+106.35"
                 android:id="@+id/tvChangePoints"
                 android:textColor="@color/green"
                 android:layout_alignParentEnd="true"
@@ -57,7 +54,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Power Grid Corporation of India"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:maxWidth="200dp"
@@ -71,7 +67,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="15.5(7.97%)"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -85,7 +80,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bought Price: 190.20"
                 android:textColor="@color/primary_grey"
                 android:id="@+id/tvBoughtPrice"
                 android:layout_toLeftOf="@+id/tvQty"
@@ -96,7 +90,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qty: 7 | LTP: 205.35"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/tvQty"
                 android:textSize="12sp"/>

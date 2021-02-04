@@ -22,10 +22,10 @@ interface OrdersDao {
     @Query("SELECT * FROM orders WHERE status=:executed ORDER BY order_created_at DESC")
     fun getExecutedOrders(executed:String):LiveData<List<Order>>
 
-    @Query("SELECT * FROM orders WHERE status=:executed AND type=:buy")
+    @Query("SELECT * FROM orders WHERE status=:executed AND type=:buy ORDER BY order_created_at DESC")
     fun getHoldings(executed:String, buy:String):LiveData<List<Order>>
 
-    @Query("SELECT * FROM orders WHERE status=:executed AND type=:sell")
+    @Query("SELECT * FROM orders WHERE status=:executed AND type=:sell ORDER BY order_created_at DESC")
     fun getPositions(executed:String, sell:String):LiveData<List<Order>>
 
     @Query("DELETE FROM orders")

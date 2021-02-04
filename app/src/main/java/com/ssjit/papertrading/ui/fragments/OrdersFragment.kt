@@ -60,13 +60,15 @@ class OrdersFragment: Fragment() {
                             Timber.d("Error in getting orders: ${it.message}")
                             binding.root.showSnack(Constants.SOMETHING_WENT_WRONG)
                         }
+                        viewmodel.isDataLoading(false)
                     }
                 }
                 Status.LOADING -> {
-
+                    viewmodel.isDataLoading(true)
                 }
                 Status.ERROR -> {
                     binding.root.showSnack(it.message.toString())
+                    viewmodel.isDataLoading(false)
                 }
             }
         })

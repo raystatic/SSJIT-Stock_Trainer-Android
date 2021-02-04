@@ -36,6 +36,7 @@ class OrdersPendingFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         orderItemAdapter = OrderItemAdapter(
+                requireContext(),
             onClick = {
 
             }
@@ -53,19 +54,24 @@ class OrdersPendingFragment: Fragment() {
 
     private fun subscribeToObservers() {
         viewmodel.pendingOrders.observe(viewLifecycleOwner, {
-           it?.let {orders->
-               binding.apply {
-                   if (orders.isEmpty()){
-                       tvEmpty.isVisible = true
-                       rvPendingOrders.isVisible = false
-                   }else{
-                       tvEmpty.isVisible = false
-                       rvPendingOrders.isVisible = true
-                       Timber.d("orders_size: ${orders.size}")
-                       orderItemAdapter.submitData(orders)
-                   }
-               }
-           }
+            it?.let { orders->
+                binding.apply {
+
+                    tvEmpty.isVisible = orders.isEmpty()
+                    rvPendingOrders.isVisible = orders.isNotEmpty()
+
+                    orderItemAdapter.submitData(orders)
+                    rvPendingOrders.scrollToPosition(0)
+
+                }
+            }
+        })
+
+        viewmodel.dataLoading.observe(viewLifecycleOwner,{
+            it?.let {
+                binding.rvPendingOrders.isVisible = !it
+                binding.progressBar.isVisible = it
+            }
         })
     }
 

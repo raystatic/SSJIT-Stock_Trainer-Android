@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentHoldingBinding
 import com.ssjit.papertrading.ui.adapters.PortfolioItemAdapter
@@ -38,6 +39,8 @@ class HoldingFragment: Fragment() {
         binding.rvHoldings.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = portfolioAdapter
+            val dividerItemDecoration = DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL)
+            addItemDecoration(dividerItemDecoration)
         }
 
         subscribeToObservers()
@@ -50,6 +53,7 @@ class HoldingFragment: Fragment() {
                 binding.rvHoldings.isVisible = it.isNotEmpty()
                 binding.tvEmpty.isVisible = it.isEmpty()
                 portfolioAdapter.submitData(it)
+                binding.rvHoldings.scrollToPosition(0)
             }
         })
 

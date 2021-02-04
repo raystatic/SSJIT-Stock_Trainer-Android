@@ -32,7 +32,7 @@ class OrdersExecutedFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orderItemAdapter = OrderItemAdapter {
+        orderItemAdapter = OrderItemAdapter(requireContext()) {
 
         }
 
@@ -51,15 +51,20 @@ class OrdersExecutedFragment: Fragment() {
         viewmodel.executedOrders.observe(viewLifecycleOwner, {
             it?.let { orders->
                 binding.apply {
-                    if (orders.isEmpty()){
-                        tvEmpty.isVisible = true
-                        rvExecutedOrders.isVisible = false
-                    }else{
-                        tvEmpty.isVisible = false
-                        rvExecutedOrders.isVisible = true
-                        orderItemAdapter.submitData(orders)
-                    }
+
+                    tvEmpty.isVisible = orders.isEmpty()
+                    rvExecutedOrders.isVisible = orders.isNotEmpty()
+
+                    orderItemAdapter.submitData(orders)
+                    rvExecutedOrders.scrollToPosition(0)
                 }
+            }
+        })
+
+        viewmodel.dataLoading.observe(viewLifecycleOwner,{
+            it?.let {
+                binding.rvExecutedOrders.isVisible = !it
+                binding.progressBar.isVisible = it
             }
         })
     }
