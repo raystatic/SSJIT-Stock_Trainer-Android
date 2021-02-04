@@ -5,13 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentPositionBinding
+import com.ssjit.papertrading.ui.adapters.PortfolioItemAdapter
+import com.ssjit.papertrading.ui.viewmodels.OrdersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PositionFragment: Fragment() {
 
     private var _binding: FragmentPositionBinding?=null
     private val binding get() = _binding!!
+    private val viewmodel by activityViewModels<OrdersViewModel>()
+    private lateinit var portfolioAdapter: PortfolioItemAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentPositionBinding.inflate(inflater, container, false)
@@ -20,7 +29,34 @@ class PositionFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "position", Toast.LENGTH_SHORT).show()
+        portfolioAdapter = PortfolioItemAdapter(requireContext()) {
+
+        }
+
+        binding.rvPositions.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = portfolioAdapter
+        }
+
+        subscribeToObservers()
+    }
+
+    private fun subscribeToObservers() {
+        viewmodel.positions.observe(viewLifecycleOwner,{
+            it?.let {
+                binding.rvPositions.isVisible = it.isNotEmpty()
+                binding.tvEmpty.isVisible = it.isEmpty()
+                portfolioAdapter.submitData(it)
+            }
+        })
+
+        viewmodel.dataLoading.observe(viewLifecycleOwner,{
+            it?.let {
+                binding.rvPositions.isVisible = !it
+                binding.progressBar.isVisible = it
+            }
+        })
+
     }
 
     override fun onDestroyView() {

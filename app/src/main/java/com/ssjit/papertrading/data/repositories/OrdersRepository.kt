@@ -29,7 +29,7 @@ class OrdersRepository @Inject constructor(
 
     fun getHoldings() = ordersDao.getHoldings(Constants.EXECUTED, Constants.BUY)
 
-    fun getPositions() = ordersDao.getPositions(Constants.EXECUTED, Constants.BUY)
+    fun getPositions() = ordersDao.getPositions(Constants.EXECUTED, Constants.SELL)
 
     fun getUser() = userDao.getUsers()
 
