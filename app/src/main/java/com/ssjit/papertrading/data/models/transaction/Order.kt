@@ -14,5 +14,8 @@ data class Order(
     val order_created_at: String,
     val status: String,
     val symbol: String,
-    val user_id: String
+    val user_id: String,
+    val type:String,
+    val currentPrice:Float?=null,
+    val companyName:String?=null
 )

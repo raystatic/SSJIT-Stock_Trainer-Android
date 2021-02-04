@@ -13,6 +13,8 @@ class OrdersRepository @Inject constructor(
     private val userDao: UserDao
 ) {
 
+    suspend fun getStockInfo(symbol:String) = apiHelper.getStockInfo(symbol)
+
     suspend fun getOrders(userId:String) = apiHelper.getOrders(userId)
 
     suspend fun insertOrders(order:Order) = ordersDao.insertOrder(order)
@@ -24,6 +26,10 @@ class OrdersRepository @Inject constructor(
     fun getAllOrders() = ordersDao.getAllOrders()
 
     suspend fun deleteAllOrders() = ordersDao.deleteAllOrders()
+
+    fun getHoldings() = ordersDao.getHoldings(Constants.EXECUTED, Constants.BUY)
+
+    fun getPositions() = ordersDao.getPositions(Constants.EXECUTED, Constants.BUY)
 
     fun getUser() = userDao.getUsers()
 
