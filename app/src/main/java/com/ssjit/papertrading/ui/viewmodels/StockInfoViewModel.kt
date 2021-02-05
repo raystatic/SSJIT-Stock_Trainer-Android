@@ -23,6 +23,14 @@ class StockInfoViewModel @ViewModelInject constructor(
     private val repository: StockInfoRepository
 ):ViewModel() {
 
+    private val _stockDetailsLoading = MutableLiveData<Boolean>()
+
+    val stockDetailLoading:LiveData<Boolean> get() = _stockDetailsLoading
+
+    fun isStockDataLoading(b:Boolean)=viewModelScope.launch {
+        _stockDetailsLoading.postValue(b)
+    }
+
     private val _stockInfoResponse = MutableLiveData<Resource<StockDetailResponse>>()
 
     val stockInfoResponse get() = _stockInfoResponse
@@ -84,6 +92,7 @@ class StockInfoViewModel @ViewModelInject constructor(
 
 
     fun getStockInfo(symbol:String) = viewModelScope.launch {
+        _stockInfoResponse.postValue(Resource.loading(null))
         try {
             repository.getStockInfo(symbol).also {
                 if (it.isSuccessful){

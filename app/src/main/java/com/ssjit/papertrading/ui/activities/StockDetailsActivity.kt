@@ -118,13 +118,16 @@ class StockDetailsActivity : AppCompatActivity() {
                             Timber.d("Error in fetching stock details: ${res.message}")
                             binding.root.showSnack(Constants.SOMETHING_WENT_WRONG)
                         }
+
+                        viewmodel.isStockDataLoading(false)
                     }
                 }
                 Status.LOADING -> {
-
+                    viewmodel.isStockDataLoading(true)
                 }
                 Status.ERROR -> {
                     binding.root.showSnack(it.message.toString())
+                    viewmodel.isStockDataLoading(false)
                 }
             }
         })

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ssjit.papertrading.databinding.FragmentStockOverviewBinding
@@ -11,6 +12,7 @@ import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Utility
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class StockOverviewFragment: Fragment() {
@@ -53,6 +55,17 @@ class StockOverviewFragment: Fragment() {
     }
 
     private fun subscribeToObservers() {
+
+        viewmodel.stockDetailLoading.observe(viewLifecycleOwner,{
+            it?.let {
+                Timber.d("stock_details $it")
+                binding.apply {
+                    progressBar.isVisible = it
+                    nestedRoot.isVisible = !it
+                }
+            }
+        })
+
         viewmodel.currentStockData.observe(viewLifecycleOwner,{
             it?.let {
                 binding.apply {
