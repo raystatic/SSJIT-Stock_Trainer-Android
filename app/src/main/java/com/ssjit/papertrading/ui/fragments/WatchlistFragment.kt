@@ -56,7 +56,7 @@ class WatchlistFragment: Fragment() {
             v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
         }
 
-        watchlistAdapter = WatchlistAdapter {
+        watchlistAdapter = WatchlistAdapter(requireContext()) {
             it?.let {
                 val intent = Intent(requireContext(), StockDetailsActivity::class.java)
                 intent.putExtra(Constants.STOCK_SYMBOL,it)

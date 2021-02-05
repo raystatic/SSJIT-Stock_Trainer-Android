@@ -1,10 +1,13 @@
 package com.ssjit.papertrading.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.search.Data
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.watchlist.Watchlist
@@ -12,6 +15,7 @@ import com.ssjit.papertrading.databinding.SearchItemBinding
 import com.ssjit.papertrading.databinding.WatchlistItemBinding
 
 class WatchlistAdapter(
+        private val context:Context,
     private val onClick: (String?) -> Unit
 ): RecyclerView.Adapter<WatchlistAdapter.WatchlistViewHolder>() {
 
@@ -50,10 +54,17 @@ class WatchlistAdapter(
                 tvSymbol.text = currentItem?.symbol
                 tvCompany.text = currentItem?.companyName
                 tvPrice.text = "₹${currentItem?.lastPrice}"
-                //tvChange.text = "$change"
+                val change = currentItem?.pChange?.replace(",","")?.toFloat()!!
+                if (change>=0){
+                    tvChange.text = "+$change"
+                    tvPrice.setTextColor(ContextCompat.getColor(context, R.color.green))
+                }else{
+                    tvChange.text = "$change"
+                    tvPrice.setTextColor(ContextCompat.getColor(context,R.color.primary_red))
+                }
 
                 root.setOnClickListener {
-                    onClick(currentItem?.symbol)
+                    onClick(currentItem.symbol)
                 }
 
             }
