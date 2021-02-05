@@ -16,4 +16,6 @@ class LoginRepository @Inject constructor(
 
     suspend fun insertUser(user: User) = userDao.insertUser(user)
 
+    fun getUser() = userDao.getUsers()
+
 }

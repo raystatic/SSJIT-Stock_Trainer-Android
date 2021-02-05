@@ -41,4 +41,6 @@ class LoginViewModel @ViewModelInject constructor(
         repository.insertUser(user)
     }
 
+    val user = repository.getUser()
+
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ import com.ssjit.papertrading.databinding.FragmentProfileBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Utility
 import com.ssjit.papertrading.ui.adapters.ProfileItemAdapter
+import com.ssjit.papertrading.ui.viewmodels.LoginViewModel
 import com.ssjit.papertrading.ui.viewmodels.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +33,7 @@ class ProfileFragment: Fragment(){
     private var _binding:FragmentProfileBinding?=null
     private val binding get() = _binding!!
 
-    private val viewmodel by viewModels<ProfileViewModel>()
+    private val viewmodel by activityViewModels<LoginViewModel>()
 
     private lateinit var profileItemAdapter: ProfileItemAdapter
 
