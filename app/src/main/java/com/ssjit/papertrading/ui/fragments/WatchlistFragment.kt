@@ -19,6 +19,7 @@ import com.ssjit.papertrading.databinding.FragmentWatchlistBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.other.Status
+import com.ssjit.papertrading.ui.activities.HomeActivity
 import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.WatchlistAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
@@ -47,6 +48,12 @@ class WatchlistFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (HomeActivity.goToTransaction){
+            binding.root.findNavController().navigate(R.id.action_buysellfragment_to_orders)
+            HomeActivity.goToTransaction = false
+        }
+
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.primaryblue)
         binding.btnFindStocks.setOnClickListener { v->
             v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
@@ -74,11 +81,11 @@ class WatchlistFragment: Fragment() {
                 Status.SUCCESS ->{
                     it.data?.let { res->
                         if (!res.error){
+                            binding.rvWatchlist.isVisible = res.watchlist.isNotEmpty()
+                            binding.progressBar.isVisible = res.watchlist.isEmpty()
                             watchlistAdapter.submitData(res.watchlist)
                         }
                     }
-                    binding.rvWatchlist.isVisible = true
-                    binding.progressBar.isVisible = false
                 }
                 Status.LOADING -> {
                     binding.progressBar.isVisible = true
@@ -104,7 +111,8 @@ class WatchlistFragment: Fragment() {
                 }
                 Timber.d("list_symbols: $list")
                 val symbols=list.joinToString(separator = ",")
-                viewModel.getWatchlist(symbols)
+                if (symbols.isNotEmpty())
+                    viewModel.getWatchlist(symbols)
                 viewModel.updateCurrentWatchList(it)
             }
         })

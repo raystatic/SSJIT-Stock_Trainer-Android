@@ -135,5 +135,13 @@ class StockInfoViewModel @ViewModelInject constructor(
         }
     }
 
+    private val _ordered = MutableLiveData<Boolean>()
+
+    val ordered:LiveData<Boolean> get() = _ordered
+
+    fun setOrdered(b: Boolean) {
+        _ordered.postValue(b)
+    }
+
 
 }

@@ -42,7 +42,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,18 +51,20 @@
                 android:text="Quantity"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:hint="Stock QTY"
                 android:textAlignment="center"
                 android:inputType="number"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:background="@drawable/gray_box"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/etStockQty"/>
@@ -78,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Price"
+                android:text="Order Amount"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -94,7 +97,6 @@
                 android:layout_gravity="center_vertical"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="190.2"
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:textColor="@color/black"
@@ -150,6 +152,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/toggleIntraday"
                 app:sb_shadow_color="@color/green"
+                app:sb_button_color="@color/green"
                 />
 
         </LinearLayout>
@@ -181,8 +184,8 @@
             android:visibility="gone"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_checked_green"
             android:id="@+id/imgSuccess"
             android:layout_centerInParent="true"

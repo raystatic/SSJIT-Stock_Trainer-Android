@@ -31,14 +31,14 @@ class StockOverviewFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBuy.setOnClickListener {
-            val buySellDialogFragment = BuySellDialogFragment()
             BuySellDialogFragment.type = Constants.BUY_STOCK
+            val buySellDialogFragment = BuySellDialogFragment()
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 
         binding.btnSell.setOnClickListener {
-            val buySellDialogFragment = BuySellDialogFragment()
             BuySellDialogFragment.type = Constants.SELL_STOCK
+            val buySellDialogFragment = BuySellDialogFragment()
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 

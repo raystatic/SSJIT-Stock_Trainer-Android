@@ -2,8 +2,10 @@ package com.ssjit.papertrading.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.ssjit.papertrading.R
 import com.ssjit.papertrading.databinding.ActivityHomeBinding
 import com.ssjit.papertrading.other.PaperWebSocketListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,10 +25,14 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var socket: Socket
     private lateinit var listener: PaperWebSocketListener
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        goToTransaction = intent.getBooleanExtra("TRANSACTION", false)
+
 
         Timber.d("before try")
 
@@ -49,6 +55,10 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemReselectedListener {
             /* NO OP*/
         }
+    }
+
+    companion object{
+        var goToTransaction = false
     }
 
     override fun onDestroy() {

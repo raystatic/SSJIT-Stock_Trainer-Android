@@ -12,6 +12,7 @@ data class Order(
     val no_shares: String,
     val order_amount: String,
     val order_created_at: String,
+    val order_executed_at:String?=null,
     val status: String,
     val symbol: String,
     val user_id: String,

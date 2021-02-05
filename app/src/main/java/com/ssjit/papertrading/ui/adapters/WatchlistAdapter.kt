@@ -41,7 +41,8 @@ class WatchlistAdapter(
 
     override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int) {
         val currentItem = differ.currentList[position]
-        holder.bind(currentItem.data[0])
+        if (currentItem.data.isNotEmpty())
+            holder.bind(currentItem.data[0])
     }
 
     override fun getItemCount(): Int {
