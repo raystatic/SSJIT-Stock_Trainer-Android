@@ -125,4 +125,7 @@ dependencies {
     //loading button
     implementation 'com.github.koushikcse:LoadingButton:1.7'
 
+    //mp-android chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }
