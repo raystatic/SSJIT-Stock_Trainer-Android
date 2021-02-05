@@ -129,15 +129,16 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                         u?.let { user ->
                             userId = user.id
                             val balance = user.balance
-                            val maximumByCapacity = balance.toFloat() / Utility.evaluatePrice(stockData.buyPrice1,stockData.buyPrice2, stockData.buyPrice3, stockData.buyPrice4, stockData.buyPrice5).toFloat()
+                            //val maximumByCapacity = balance.toFloat() / Utility.evaluatePrice(stockData.buyPrice1,stockData.buyPrice2, stockData.buyPrice3, stockData.buyPrice4, stockData.buyPrice5).toFloat()
+                            val maximumByCapacity = balance.toFloat() / stockData.lastPrice.replace(",","").replace("-","").toFloat()
                             val capacity = maximumByCapacity.roundToInt()
                             maxCapacity = capacity
                             tvStockBuyQuantity.text = "Maximum Buy Capacity $capacity"
 //                            tvPrice.text = Utility.formatAmount(
 //                                Utility.evaluatePrice(stockData.buyPrice1,stockData.buyPrice2, stockData.buyPrice3, stockData.buyPrice4, stockData.buyPrice5)
 //                            )
-                            price = Utility.evaluatePrice(stockData.buyPrice1,stockData.buyPrice2, stockData.buyPrice3, stockData.buyPrice4, stockData.buyPrice5).toFloat()
-
+                            //price = Utility.evaluatePrice(stockData.buyPrice1,stockData.buyPrice2, stockData.buyPrice3, stockData.buyPrice4, stockData.buyPrice5).toFloat()
+                            price = stockData.lastPrice.replace(",","").replace("-","").toFloat()
                         }
                     })
                 }

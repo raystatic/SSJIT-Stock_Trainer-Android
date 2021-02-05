@@ -7,6 +7,7 @@ import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
 import com.ssjit.papertrading.data.models.transaction.GetOrdersResponse
+import com.ssjit.papertrading.data.models.watchlist.WatchlistResponse
 import retrofit2.Response
 import retrofit2.http.POST
 
@@ -21,5 +22,7 @@ interface ApiHelper {
     suspend fun createOrder(createOrderRequest: CreateOrderRequest):Response<CreateOrderResponse>
 
     suspend fun getOrders(userId:String):Response<GetOrdersResponse>
+
+    suspend fun getWatchlists(symbols:String):Response<WatchlistResponse>
 
 }

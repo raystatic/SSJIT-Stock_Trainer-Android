@@ -12,7 +12,7 @@ object Utility {
     }
 
     fun formatAmount(amount:String):String{
-        val s = amount.toFloat()
+        val s = amount.replace(",","").toFloat()
         return "${Constants.RUPEE_SYMBOL} ${NumberFormat.getNumberInstance().format(s)}"
     }
 

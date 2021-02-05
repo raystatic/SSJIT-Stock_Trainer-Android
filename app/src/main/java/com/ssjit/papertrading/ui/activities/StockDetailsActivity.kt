@@ -53,7 +53,7 @@ class StockDetailsActivity : AppCompatActivity() {
 
         binding.imgWatchlist.setOnClickListener {
             selectedStock?.let {
-                if (it.addedToWatchList == 0)
+                if (it.addedToWatchList == 0 || it.addedToWatchList == null)
                     it.addedToWatchList = 1
                 else
                     it.addedToWatchList = 0
@@ -108,7 +108,8 @@ class StockDetailsActivity : AppCompatActivity() {
                                     binding.apply {
                                         tvSymbol.text = stock.symbol
                                         tvPrice.text = Utility.formatAmount(
-                                            Utility.evaluatePrice(stock.buyPrice1, stock.buyPrice2, stock.buyPrice3, stock.buyPrice4, stock.buyPrice5)
+                                            //Utility.evaluatePrice(stock.buyPrice1, stock.buyPrice2, stock.buyPrice3, stock.buyPrice4, stock.buyPrice5)
+                                            stock.lastPrice
                                         )
                                     }
                                 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,8 @@ import com.ssjit.papertrading.data.models.indices.BSEIndex
 import com.ssjit.papertrading.data.models.indices.NSEIndex
 import com.ssjit.papertrading.databinding.FragmentWatchlistBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.Extensions.showSnack
+import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.ui.activities.StockDetailsActivity
 import com.ssjit.papertrading.ui.adapters.WatchlistAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
@@ -31,7 +34,7 @@ class WatchlistFragment: Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<StockInfoViewModel>()
+    private val viewModel by activityViewModels<StockInfoViewModel>()
 
     private lateinit var watchlistAdapter:WatchlistAdapter
     private lateinit var listener: PaperWebSocketListener
@@ -55,8 +58,6 @@ class WatchlistFragment: Fragment() {
 
         watchlistAdapter = WatchlistAdapter {
             it?.let {
-                //StockDetailsFragment.stockSymbol = it
-                //binding.root.findNavController().navigate(R.id.action_watchlistFragment_to_stockDetailsFragment)
                 val intent = Intent(requireContext(), StockDetailsActivity::class.java)
                 intent.putExtra(Constants.STOCK_SYMBOL,it)
                 startActivity(intent)
@@ -68,19 +69,43 @@ class WatchlistFragment: Fragment() {
             adapter = watchlistAdapter
         }
 
+        viewModel.watchlistResponse.observe(viewLifecycleOwner,{
+            when(it.status){
+                Status.SUCCESS ->{
+                    it.data?.let { res->
+                        if (!res.error){
+                            watchlistAdapter.submitData(res.watchlist)
+                        }
+                    }
+                    binding.rvWatchlist.isVisible = true
+                    binding.progressBar.isVisible = false
+                }
+                Status.LOADING -> {
+                    binding.progressBar.isVisible = true
+                    binding.rvWatchlist.isVisible = false
+
+                }
+                Status.ERROR -> {
+                    Timber.d("Error in getting watchlist ${it.message}")
+                    binding.root.showSnack(Constants.SOMETHING_WENT_WRONG)
+                    binding.progressBar.isVisible = false
+                    binding.rvWatchlist.isVisible = false
+                }
+            }
+        })
+
         viewModel.watchList.observe(viewLifecycleOwner,{
             it?.let {
-                if (it.isEmpty()){
-                    binding.btnFindStocks.isVisible = true
-                    binding.tvFindText.isVisible = true
-                    binding.rvWatchlist.isVisible = false
-                }else{
-                    binding.btnFindStocks.isVisible = false
-                    binding.tvFindText.isVisible = false
-                    binding.rvWatchlist.isVisible = true
-                    watchlistAdapter.submitData(it)
-                    viewModel.updateCurrentWatchList(it)
+                binding.btnFindStocks.isVisible = it.isEmpty()
+                binding.tvFindText.isVisible = it.isEmpty()
+                binding.rvWatchlist.isVisible = false
+                val list = it.map {
+                    it.symbol
                 }
+                Timber.d("list_symbols: $list")
+                val symbols=list.joinToString(separator = ",")
+                viewModel.getWatchlist(symbols)
+                viewModel.updateCurrentWatchList(it)
             }
         })
 

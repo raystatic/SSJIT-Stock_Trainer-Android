@@ -7,6 +7,7 @@ import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
 import com.ssjit.papertrading.data.models.transaction.GetOrdersResponse
+import com.ssjit.papertrading.data.models.watchlist.WatchlistResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -33,5 +34,10 @@ interface ApiService {
     suspend fun getOrders(
         @Query("userId") userId:String
     ):Response<GetOrdersResponse>
+
+    @GET("watchlist")
+    suspend fun getWatchlists(
+            @Query("watchlists") watchlist:String
+    ):Response<WatchlistResponse>
 
 }

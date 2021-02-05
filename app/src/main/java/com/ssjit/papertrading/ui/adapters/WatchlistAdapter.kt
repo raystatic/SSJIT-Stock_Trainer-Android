@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ssjit.papertrading.data.models.search.Data
 import com.ssjit.papertrading.data.models.stockdetail.StockData
+import com.ssjit.papertrading.data.models.watchlist.Watchlist
 import com.ssjit.papertrading.databinding.SearchItemBinding
 import com.ssjit.papertrading.databinding.WatchlistItemBinding
 
@@ -14,19 +15,19 @@ class WatchlistAdapter(
     private val onClick: (String?) -> Unit
 ): RecyclerView.Adapter<WatchlistAdapter.WatchlistViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<StockData>(){
-        override fun areItemsTheSame(oldItem: StockData, newItem: StockData): Boolean =
-            oldItem.symbol == newItem.symbol
+    private val diffCallback = object : DiffUtil.ItemCallback<Watchlist>(){
+        override fun areItemsTheSame(oldItem: Watchlist, newItem: Watchlist): Boolean =
+            oldItem.data[0].symbol == newItem.data[0].symbol
 
         override fun areContentsTheSame(
-            oldItem: StockData,
-            newItem: StockData
+            oldItem: Watchlist,
+            newItem: Watchlist
         ) = oldItem == newItem
     }
 
     private val differ = AsyncListDiffer(this,diffCallback)
 
-    fun submitData(list: List<StockData>) = differ.submitList(list)
+    fun submitData(list: List<Watchlist>) = differ.submitList(list)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WatchlistViewHolder {
         val binding = WatchlistItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -36,7 +37,7 @@ class WatchlistAdapter(
 
     override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int) {
         val currentItem = differ.currentList[position]
-        holder.bind(currentItem)
+        holder.bind(currentItem.data[0])
     }
 
     override fun getItemCount(): Int {
@@ -44,11 +45,11 @@ class WatchlistAdapter(
     }
 
     inner class WatchlistViewHolder(private val binding: WatchlistItemBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem: StockData?) {
+        fun bind(currentItem: com.ssjit.papertrading.data.models.watchlist.Data?) {
             binding.apply {
                 tvSymbol.text = currentItem?.symbol
                 tvCompany.text = currentItem?.companyName
-                tvPrice.text = "₹${currentItem?.closePrice}"
+                tvPrice.text = "₹${currentItem?.lastPrice}"
                 //tvChange.text = "$change"
 
                 root.setOnClickListener {

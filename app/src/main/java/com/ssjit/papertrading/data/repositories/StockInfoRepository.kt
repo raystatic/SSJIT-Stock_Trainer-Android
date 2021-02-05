@@ -21,6 +21,8 @@ class StockInfoRepository @Inject constructor(
     private val userDao: UserDao
 ) {
 
+    suspend fun getWatchlists(symbols:String) = apiHelper.getWatchlists(symbols)
+
     suspend fun getStockInfo(symbol:String) = apiHelper.getStockInfo(symbol)
 
     suspend fun upsertLocalStock(stockData: StockData) = localStocksDao.upsertLocalStock(stockData)
