@@ -17,8 +17,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ssjit.papertrading.R
+import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.models.transaction.CreateOrderResponse
+import com.ssjit.papertrading.data.models.transaction.Order
 import com.ssjit.papertrading.databinding.BuySellDialogBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Extensions.showToast
@@ -58,6 +60,14 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                 binding.tvPrice.text = Utility.formatAmount(amount = amount.toString())
             }
 
+            toSellOrder?.let { s->
+                val quantity = if (query.isEmpty()) 0 else query.toInt()
+                amount = s.currentPrice?.let {
+                    quantity * it
+                }
+                binding.tvPrice.text = Utility.formatAmount(amount = amount.toString())
+            }
+
         }
 
         binding.loadingButton.setOnClickListener {
@@ -72,6 +82,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                     requireContext().showToast("Stock limit exceeded")
                     return@setOnClickListener
                 }
+
                 if (symbol.isNotEmpty() && price!=null && amount!=null && userId.isNotEmpty()){
                     var orderType = Constants.BUY
                     if (type == Constants.SELL_STOCK){
@@ -90,9 +101,28 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                     viewmodel.createOrderRequest(createOrderRequest)
 
                 }
-            } ?: kotlin.run {
-                return@setOnClickListener
             }
+
+            toSellOrder?.let { order->
+                if (qty.toInt() > order.no_shares.toInt()){
+                    requireContext().showToast("Stock limit exceeded")
+                    return@setOnClickListener
+                }
+
+                val createOrderRequest = CreateOrderRequest(
+                        symbol = order.symbol,
+                        noOfShares = qty,
+                        orderCreatedAt = "${System.currentTimeMillis()}",
+                        userId = order.user_id,
+                        orderAmount = amount.toString(),
+                        intraday = false,
+                        type = Constants.SELL
+                )
+
+                viewmodel.createOrderRequest(createOrderRequest)
+
+            }
+
         }
 
 
@@ -203,6 +233,24 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
                     shadowColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
                 }
 
+                binding.toggleIntraday.isVisible = false
+                binding.linIntraday.isVisible = false
+
+                toSellOrder?.let { order->
+                    tvStockSymbol.text = order.symbol
+                    tvStockBuyQuantity.text = "Maximum sell quantity ${order.no_shares}"
+
+                    binding.loadingButton.setOnClickListener {
+                        val qty = binding.etStockQty.text.toString()
+                        if (qty.isEmpty()){
+                            requireContext().showToast("Stock quantity cannot be empty")
+                            return@setOnClickListener
+                        }
+
+                    }
+
+                }
+
 
                 // toggleIntraday.drawabl(ContextCompat.getColor(requireContext(), R.color.primary_red))
 
@@ -241,6 +289,7 @@ class BuySellDialogFragment: BottomSheetDialogFragment() {
         var price:Float?=null
         var maxCapacity:Int?=null
         var type = Constants.BUY_STOCK
+        var toSellOrder:Order?=null
     }
 
 }

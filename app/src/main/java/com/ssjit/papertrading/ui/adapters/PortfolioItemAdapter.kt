@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 
 class PortfolioItemAdapter(
         private val context:Context,
-    private val onClick:(String) -> Unit
+    private val onClick:(Order) -> Unit
 ): RecyclerView.Adapter<PortfolioItemAdapter.PortfolioItemViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Order>(){
@@ -42,7 +42,7 @@ class PortfolioItemAdapter(
                 if (order.type == Constants.BUY){
                     tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.primaryblue))
                 }else{
-                    tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.yellow))
+                    tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.app_puple))
                 }
                 tvSymbol.text = order.symbol
                 tvCompany.text = order.companyName
@@ -60,6 +60,10 @@ class PortfolioItemAdapter(
                 }else{
                     tvChangePoints.text = "${pointsChange.toString()}"
                     tvChangePoints.setTextColor(ContextCompat.getColor(context, R.color.primary_red))
+                }
+
+                root.setOnClickListener {
+                    onClick(order)
                 }
             }
         }

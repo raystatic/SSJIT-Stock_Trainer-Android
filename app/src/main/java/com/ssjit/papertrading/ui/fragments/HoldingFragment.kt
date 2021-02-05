@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.databinding.FragmentHoldingBinding
+import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.ui.adapters.PortfolioItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,10 @@ class HoldingFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         portfolioAdapter = PortfolioItemAdapter(requireContext()) {
-
+            val buySellDialogFragment = BuySellDialogFragment()
+            BuySellDialogFragment.type = Constants.SELL_STOCK
+            BuySellDialogFragment.toSellOrder = it
+            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 
         binding.rvHoldings.apply {

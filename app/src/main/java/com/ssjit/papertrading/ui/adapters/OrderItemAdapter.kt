@@ -42,7 +42,7 @@ class OrderItemAdapter(
                 if (order.type == Constants.BUY){
                     tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.primaryblue))
                 }else{
-                    tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.yellow))
+                    tvType.setBackgroundColor(ContextCompat.getColor(context,R.color.app_puple))
                 }
                 tvSymbol.text = order.symbol
                 tvCompany.text = order.companyName
