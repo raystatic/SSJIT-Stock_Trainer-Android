@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         goToTransaction = intent.getBooleanExtra("TRANSACTION", false)
+        futureOptionsSymbol = intent.getStringExtra("FUTUREOPTIONSSYMBOL") ?: ""
 
 
         Timber.d("before try")
@@ -59,6 +60,7 @@ class HomeActivity : AppCompatActivity() {
 
     companion object{
         var goToTransaction = false
+        var futureOptionsSymbol = ""
     }
 
     override fun onDestroy() {

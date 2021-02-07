@@ -1,5 +1,7 @@
 package com.ssjit.papertrading.data.remote
 
+import com.ssjit.papertrading.data.models.FNO.FuturesResponse
+import com.ssjit.papertrading.data.models.FNO.OptionsResponse
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
@@ -36,5 +38,13 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun getWatchlists(symbols: String): Response<WatchlistResponse> {
         return apiService.getWatchlists(symbols)
+    }
+
+    override suspend fun getOptions(symbol: String): Response<OptionsResponse> {
+        return apiService.getOptions(symbol)
+    }
+
+    override suspend fun getFutures(symbol: String): Response<FuturesResponse> {
+        return apiService.getFutures(symbol)
     }
 }

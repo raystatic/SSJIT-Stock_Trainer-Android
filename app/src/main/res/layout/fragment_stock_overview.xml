@@ -246,6 +246,18 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/tv52High"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Future &amp; Options"
+                android:id="@+id/btnFutureNOptions"
+                app:layout_constraintTop_toBottomOf="@+id/tv52High"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="visible"
+                android:layout_marginTop="30dp"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

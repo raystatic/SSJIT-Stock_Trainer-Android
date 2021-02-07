@@ -7,6 +7,10 @@
         android:id="@+id/action_buysellfragment_to_orders"
         app:destination="@+id/ordersFragment"/>
 
+    <action
+        android:id="@+id/action_stockdetails_to_futureoptions"
+        app:destination="@+id/futureOptionsFragment"/>
+
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.ssjit.papertrading.ui.fragments.WatchlistFragment"
@@ -73,5 +77,10 @@
         <action
             android:id="@+id/action_stockDetailsFragment_to_watchlistFragment"
             app:destination="@id/watchlistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/futureOptionsFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.FutureOptionsFragment"
+        android:label="FutureOptionsFragment" >
     </fragment>
 </navigation>

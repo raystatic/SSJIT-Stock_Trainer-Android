@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="25FEB2021"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/tvDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="@id/tvDate"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            android:layout_marginStart="5dp"
+            android:text="(-8.9%)"
+            android:textColor="@color/black"
+            android:id="@+id/tvpchange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate"
+            android:layout_marginTop="5dp"
+            android:text="Annualised Volatility"
+            android:id="@+id/tvAnnualisedVolatilityTitle"
+            android:textColor="@color/primary_grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tvAnnualisedVolatilityTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnnualisedVolatilityTitle"
+            android:text="1,36,00"
+            android:id="@+id/tvAnnualisedVolatility"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate"
+            android:layout_marginTop="5dp"
+            android:text="Day Volatility"
+            android:id="@+id/tvDayVolatilityTitle"
+            android:textColor="@color/primary_grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvDayVolatilityTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvDayVolatilityTitle"
+            android:text="1,36,00"
+            android:id="@+id/tvDayVolatility"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnnualisedVolatility"
+            android:layout_marginTop="10dp"
+            android:text="Total Sell Quantity"
+            android:id="@+id/tvTotalSellQtyTitle"
+            android:textColor="@color/primary_grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tvTotalSellQtyTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalSellQtyTitle"
+            android:text="1,36,00"
+            android:id="@+id/tvTotalSellQty"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnnualisedVolatility"
+            android:layout_marginTop="10dp"
+            android:text="Total Buy Quantity"
+            android:id="@+id/tvTotalBuyQtyTitle"
+            android:textColor="@color/primary_grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalBuyQtyTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvTotalBuyQtyTitle"
+            android:text="1,36,00"
+            android:id="@+id/tvTotalBuyQty"
+            android:textColor="@color/black"
+            />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalSellQty"
+            android:layout_marginTop="20dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:progressDrawable="@drawable/blue_green_gradient"
+            android:splitTrack="false"
+            android:id="@+id/lowHighSeekbar"
+            android:focusable="false"
+            android:thumbOffset="0dp"
+            android:clickable="false"
+            android:progress="100"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low Price"
+            app:layout_constraintTop_toBottomOf="@+id/lowHighSeekbar"
+            app:layout_constraintStart_toStartOf="@+id/lowHighSeekbar"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/primary_grey"
+            android:id="@+id/tvLowPriceTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3,135.5"
+            app:layout_constraintTop_toBottomOf="@+id/tvLowPriceTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvLowPriceTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvLowPriceTitle"
+            android:id="@+id/tvLowPrice"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High Price"
+            app:layout_constraintTop_toBottomOf="@+id/lowHighSeekbar"
+            app:layout_constraintEnd_toEndOf="@+id/lowHighSeekbar"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/primary_grey"
+            android:id="@+id/tvHighPriceTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3,135.5"
+            app:layout_constraintTop_toBottomOf="@+id/tvHighPriceTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvHighPriceTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvHighPriceTitle"
+            android:id="@+id/tvHighPrice"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Price"
+            android:textColor="@color/primary_grey"
+            app:layout_constraintTop_toBottomOf="@+id/tvLowPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvOpenPriceTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3,135.5"
+            app:layout_constraintTop_toBottomOf="@+id/tvOpenPriceTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvOpenPriceTitle"
+            android:id="@+id/tvOpenPrice"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Price"
+            android:textColor="@color/primary_grey"
+            app:layout_constraintTop_toBottomOf="@+id/tvLowPrice"
+            app:layout_constraintStart_toStartOf="@id/tvOpenPriceTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvLTPTitle"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvLastPriceTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3,135.5"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastPriceTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvLastPriceTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvLastPriceTitle"
+            android:id="@+id/tvLastPrice"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LTP"
+            android:textColor="@color/primary_grey"
+            app:layout_constraintTop_toBottomOf="@+id/tvHighPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvLTPTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3,135.5"
+            app:layout_constraintTop_toBottomOf="@+id/tvLTPTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvLTPTitle"
+            android:id="@+id/tvLTP"
+            android:textColor="@color/black"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

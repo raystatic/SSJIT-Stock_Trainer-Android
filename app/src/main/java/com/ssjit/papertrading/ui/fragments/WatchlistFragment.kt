@@ -199,4 +199,5 @@ class WatchlistFragment: Fragment() {
 
     }
 
+
 }

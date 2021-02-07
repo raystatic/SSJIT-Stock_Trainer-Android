@@ -3,6 +3,7 @@ package com.ssjit.papertrading.other
 import android.content.Context
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
+import com.ssjit.papertrading.R
 import java.lang.StringBuilder
 
 class ShowAlertDialog(
@@ -20,7 +21,7 @@ class ShowAlertDialog(
     }
 
     private fun initDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(context)
+        val alertDialogBuilder = AlertDialog.Builder(context, R.style.AlertDialog_Theme_Light)
         alertDialogBuilder.apply {
             setTitle(title)
             setMessage(message)

@@ -1,5 +1,7 @@
 package com.ssjit.papertrading.data.remote
 
+import com.ssjit.papertrading.data.models.FNO.FuturesResponse
+import com.ssjit.papertrading.data.models.FNO.OptionsResponse
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
@@ -39,5 +41,15 @@ interface ApiService {
     suspend fun getWatchlists(
             @Query("watchlists") watchlist:String
     ):Response<WatchlistResponse>
+
+    @GET("stock/options")
+    suspend fun getOptions(
+            @Query("symbol") symbol:String
+    ):Response<OptionsResponse>
+
+    @GET("stock/futures")
+    suspend fun getFutures(
+            @Query("symbol") symbol:String
+    ):Response<FuturesResponse>
 
 }

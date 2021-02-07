@@ -1,5 +1,7 @@
 package com.ssjit.papertrading.data.remote
 
+import com.ssjit.papertrading.data.models.FNO.FuturesResponse
+import com.ssjit.papertrading.data.models.FNO.OptionsResponse
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
@@ -24,5 +26,9 @@ interface ApiHelper {
     suspend fun getOrders(userId:String):Response<GetOrdersResponse>
 
     suspend fun getWatchlists(symbols:String):Response<WatchlistResponse>
+
+    suspend fun getOptions(symbol:String):Response<OptionsResponse>
+
+    suspend fun getFutures(symbol: String):Response<FuturesResponse>
 
 }

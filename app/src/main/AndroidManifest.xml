@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SSJIT_STOCK_TRAINER"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activities.StockDetailsActivity"></activity>
+        <activity android:name=".ui.activities.FutureOptionsActivity"></activity>
+        <activity android:name=".ui.activities.StockDetailsActivity" />
         <activity
             android:name=".ui.activities.HomeActivity"
             android:windowSoftInputMode="adjustPan" />

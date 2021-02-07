@@ -1,5 +1,6 @@
 package com.ssjit.papertrading.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.fragment.app.activityViewModels
 import com.ssjit.papertrading.databinding.FragmentStockOverviewBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Utility
+import com.ssjit.papertrading.ui.activities.FutureOptionsActivity
+import com.ssjit.papertrading.ui.activities.HomeActivity
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -68,6 +71,11 @@ class StockOverviewFragment: Fragment() {
 
         viewmodel.currentStockData.observe(viewLifecycleOwner,{
             it?.let {
+                binding.btnFutureNOptions.setOnClickListener {_->
+                    val intent = Intent(requireContext(),FutureOptionsActivity::class.java)
+                    intent.putExtra("FUTUREOPTIONSSYMBOL",it.symbol)
+                    startActivity(intent)
+                }
                 binding.apply {
                     tvCompany.text = it.companyName
                     tvOpen.text = Utility.format(it.open)
