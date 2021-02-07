@@ -83,8 +83,8 @@ class FuturesFragment: Fragment() {
                             Timber.d("Error in getting futures: ${res.message}")
                             ShowAlertDialog(
                                 context = requireContext(),
-                                title = "Data not found",
-                                message = "No expiry dates of this stock are available at the moment",
+                                title = "",
+                                message = "No expiry dates present",
                                 positive = "Okay",
                                 negative = null,
                                 onPositiveButtonClicked = {
