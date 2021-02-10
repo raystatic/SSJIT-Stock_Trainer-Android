@@ -128,4 +128,10 @@ dependencies {
     //mp-android chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    //auto-scroll
+    implementation 'com.github.pzienowicz:androidx-auto-scroll-view-pager:1.2.0'
+
+    //chrometabs
+    implementation 'com.android.support:customtabs:23.3.0'
+
 }

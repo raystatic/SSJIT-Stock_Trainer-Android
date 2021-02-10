@@ -1,6 +1,12 @@
 package com.ssjit.papertrading.other
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import com.ssjit.papertrading.R
 import timber.log.Timber
 import java.text.NumberFormat
 import java.util.*
@@ -41,6 +47,25 @@ object Utility {
 
         return price.toString()
 
+    }
+
+    fun openUrl(context: Context, url: String){
+        val intentBuilder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
+
+        intentBuilder.setToolbarColor(ContextCompat.getColor(context,
+            R.color.colorPrimary
+        ))
+        intentBuilder.setSecondaryToolbarColor(
+            ContextCompat.getColor(
+                context,
+                R.color.colorPrimary
+            )
+        )
+
+        val customTabsIntent: CustomTabsIntent = intentBuilder.build()
+        customTabsIntent.intent.setPackage("com.android.chrome")
+        customTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        customTabsIntent.launchUrl(context, Uri.parse(url))
     }
 
 }

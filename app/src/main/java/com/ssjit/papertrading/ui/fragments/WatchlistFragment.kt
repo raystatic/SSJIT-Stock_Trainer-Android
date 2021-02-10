@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssjit.papertrading.R
+import com.ssjit.papertrading.data.models.Banner
 import com.ssjit.papertrading.data.models.indices.BSEIndex
 import com.ssjit.papertrading.data.models.indices.NSEIndex
 import com.ssjit.papertrading.databinding.FragmentWatchlistBinding
@@ -21,6 +22,7 @@ import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.other.Status
 import com.ssjit.papertrading.ui.activities.HomeActivity
 import com.ssjit.papertrading.ui.activities.StockDetailsActivity
+import com.ssjit.papertrading.ui.adapters.BannerPagerAdapter
 import com.ssjit.papertrading.ui.adapters.WatchlistAdapter
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,6 +78,28 @@ class WatchlistFragment: Fragment() {
             adapter = watchlistAdapter
         }
 
+        val banners = mutableListOf<Banner>()
+        banners.add(
+            Banner(image= R.drawable.ic_zerodha,name = "ZERODHA",tagline = "A Discount Broker",link = "https://zerodha.com/open-account/")
+        )
+
+        banners.add(
+            Banner(image= R.drawable.ic_upstox,name = "UPSTOX",tagline = "Trade Faster &amp; Smarter",link = "https://upstox.com/open-demat-account/")
+        )
+
+        banners.add(
+            Banner(image= R.drawable.fyers_logo,name = "FYERS ONE",tagline = "Free Investment Zone",link = "https://open-account.fyers.in/")
+        )
+
+        val viewPagerAdapter = BannerPagerAdapter(requireContext(),banners)
+        binding.viewPager.apply {
+            adapter = viewPagerAdapter
+            pageMargin = 15
+            setPadding(50, 0, 50, 0)
+            clipToPadding = false
+            pageMargin = 25
+            startAutoScroll(5000)
+        }
         viewModel.watchlistResponse.observe(viewLifecycleOwner,{
             when(it.status){
                 Status.SUCCESS ->{
