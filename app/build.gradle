@@ -134,4 +134,7 @@ dependencies {
     //chrometabs
     implementation 'com.android.support:customtabs:23.3.0'
 
+    //expandable layout
+    implementation "com.github.aakira:expandable-layout:1.6.0@aar"
+
 }
