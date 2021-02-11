@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.components.Legend
@@ -57,7 +58,11 @@ class ProfileFragment: Fragment(){
 
         profileItemAdapter = ProfileItemAdapter(requireContext()) {
             it?.let {
-
+                when(it){
+                    Constants.PROFILE_MARKET_NEWS -> {
+                        binding.root.findNavController().navigate(R.id.action_profileFragment_to_newsFragment)
+                    }
+                }
             }
         }
 

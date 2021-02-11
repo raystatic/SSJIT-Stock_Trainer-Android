@@ -61,7 +61,11 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ssjit.papertrading.ui.fragments.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.ssjit.papertrading.ui.fragments.SearchFragment"
@@ -83,4 +87,8 @@
         android:name="com.ssjit.papertrading.ui.fragments.FutureOptionsFragment"
         android:label="FutureOptionsFragment" >
     </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.ssjit.papertrading.ui.fragments.NewsFragment"
+        android:label="NewsFragment" />
 </navigation>

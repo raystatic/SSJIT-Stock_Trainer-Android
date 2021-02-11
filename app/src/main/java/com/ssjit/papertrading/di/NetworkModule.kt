@@ -3,6 +3,7 @@ package com.ssjit.papertrading.di
 import com.ssjit.papertrading.data.remote.ApiHelper
 import com.ssjit.papertrading.data.remote.ApiHelperImpl
 import com.ssjit.papertrading.data.remote.ApiService
+import com.ssjit.papertrading.data.remote.RapidApiService
 import com.ssjit.papertrading.other.Constants
 import dagger.Module
 import dagger.Provides
