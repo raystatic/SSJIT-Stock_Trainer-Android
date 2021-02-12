@@ -35,8 +35,9 @@ object Constants {
     const val PROFILE_NEGATIVE_TRANSACTIONS = "Negative Transactions"
     const val PROFILE_INVITE_FRIENDS = "Invite Friends"
     const val PROFILE_MARKET_NEWS = "Market News"
+    const val PROFILE_PRO_VERSION = "Pro Version"
     const val PROFILE_PRIVACY_POLICY = "Privacy Policy"
-    const val PROFILE_WHATSAPP_SUPPORT = "WhatsApp Support"
+    const val PROFILE_WHATSAPP_SUPPORT = "Support"
 
     const val NO_DATA_FOUND_TITLE=  "Data not found"
     const val NO_DATA_FOUND_MESSAGE = "Data for this symbol is not found"
