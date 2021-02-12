@@ -28,7 +28,7 @@ class FutureOptionsActivity : AppCompatActivity() {
 
         if (symbol.isEmpty()) finish()
 
-        window?.statusBarColor = ContextCompat.getColor(this, R.color.primary_red)
+        window?.statusBarColor = ContextCompat.getColor(this, R.color.logo_green)
         binding.foTabLayout.setupWithViewPager(binding.foPager)
         futureOptionsPagerAdapter = FutureOptionsPagerAdapter(supportFragmentManager)
         binding.foPager.adapter = futureOptionsPagerAdapter

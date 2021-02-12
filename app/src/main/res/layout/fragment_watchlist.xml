@@ -50,64 +50,74 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:weightSum="2"
-                android:id="@+id/linIndices"
-                android:background="@color/grey"
-                app:layout_constraintTop_toBottomOf="@+id/topBarRel">
+                android:id="@+id/cardIndices"
+                app:layout_constraintTop_toBottomOf="@+id/topBarRel"
+                app:cardElevation="10dp">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:weightSum="2"
+                    android:id="@+id/linIndices"
+                    android:background="@color/grey">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primary_grey"
-                        android:layout_gravity="end"
-                        android:id="@+id/tvIndexSensex"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_grey"
+                            android:layout_gravity="end"
+                            android:id="@+id/tvIndexSensex"
+                            android:layout_centerHorizontal="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_grey"
+                            android:layout_alignEnd="@+id/tvIndexSensex"
+                            android:layout_below="@+id/tvIndexSensex"
+                            android:id="@+id/tvIndexSensexChange"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primary_grey"
-                        android:layout_alignEnd="@+id/tvIndexSensex"
-                        android:layout_below="@+id/tvIndexSensex"
-                        android:id="@+id/tvIndexSensexChange"/>
+                        android:layout_weight="1">
 
-                </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_grey"
+                            android:layout_gravity="end"
+                            android:id="@+id/tvIndexNifty"
+                            android:layout_centerHorizontal="true"/>
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_grey"
+                            android:layout_alignEnd="@+id/tvIndexNifty"
+                            android:layout_below="@+id/tvIndexNifty"
+                            android:id="@+id/tvIndexNiftyChange"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primary_grey"
-                        android:layout_gravity="end"
-                        android:id="@+id/tvIndexNifty"
-                        android:layout_centerHorizontal="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primary_grey"
-                        android:layout_alignEnd="@+id/tvIndexNifty"
-                        android:layout_below="@+id/tvIndexNifty"
-                        android:id="@+id/tvIndexNiftyChange"/>
-
-                </RelativeLayout>
+                    </RelativeLayout>
 
 
-            </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:text="Find Stock"
                 android:id="@+id/btnFindStocks"
-                app:layout_constraintTop_toBottomOf="@+id/linIndices"
+                app:layout_constraintTop_toBottomOf="@+id/cardIndices"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,14 +145,16 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvWatchlist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:maxHeight="500dp"
-                app:layout_constraintTop_toBottomOf="@+id/linIndices"
+                app:layout_constraintTop_toBottomOf="@+id/cardIndices"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tvOpenHeading"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 card_view:listitem="@layout/watchlist_item"/>
 
             <ProgressBar
@@ -160,9 +172,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Open A Demat &amp; Trading Account"
-                app:layout_constraintTop_toBottomOf="@+id/rvWatchlist"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tvOpenSubHeading"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -172,9 +184,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select your preffered broker"
-                app:layout_constraintTop_toBottomOf="@+id/tvOpenHeading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/view_pager"
                 android:textColor="@color/gray"
                 android:layout_marginTop="5dp"
                 android:id="@+id/tvOpenSubHeading"/>
@@ -183,7 +195,7 @@
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:layout_constraintTop_toBottomOf="@id/tvOpenSubHeading"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp" />

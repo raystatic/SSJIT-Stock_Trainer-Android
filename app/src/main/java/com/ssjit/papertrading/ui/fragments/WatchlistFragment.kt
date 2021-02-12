@@ -98,7 +98,7 @@ class WatchlistFragment: Fragment() {
             setPadding(50, 0, 50, 0)
             clipToPadding = false
             pageMargin = 25
-            startAutoScroll(5000)
+            startAutoScroll(8000)
         }
         viewModel.watchlistResponse.observe(viewLifecycleOwner,{
             when(it.status){
@@ -147,6 +147,11 @@ class WatchlistFragment: Fragment() {
                     val nse = it[0]
                     binding.tvIndexNifty.text = "NIFTY ${nse.previousClose}"
                     binding.tvIndexNiftyChange.text = "${nse.percChange}%"
+                    if (nse.percChange.toFloat() < 0){
+                        binding.tvIndexNifty.setTextColor(ContextCompat.getColor(requireContext(),R.color.primary_red))
+                    }else{
+                        binding.tvIndexNifty.setTextColor(ContextCompat.getColor(requireContext(),R.color.logo_green))
+                    }
                 }
             }
         })
@@ -157,6 +162,13 @@ class WatchlistFragment: Fragment() {
                     val bse = it[0]
                     binding.tvIndexSensex.text = "SENSEX ${bse.todayClose}"
                     binding.tvIndexSensexChange.text = "${bse.pointPercent}%"
+
+                    if (bse.pointChange.toFloat() < 0){
+                        binding.tvIndexSensex.setTextColor(ContextCompat.getColor(requireContext(),R.color.primary_red))
+                    }else{
+                        binding.tvIndexSensex.setTextColor(ContextCompat.getColor(requireContext(),R.color.logo_green))
+                    }
+
                 }
 
             }
