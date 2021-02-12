@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.ssjit.papertrading.R
+import com.ssjit.papertrading.ui.fragments.OrderFragment
 
 object Extensions {
 
@@ -24,7 +25,10 @@ object Extensions {
 
     fun MaterialButton.enable(b:Boolean){
         if (b){
-            this.setBackgroundColor(ContextCompat.getColor(context,R.color.logo_green))
+            if (OrderFragment.type == Constants.BUY_STOCK)
+                this.setBackgroundColor(ContextCompat.getColor(context,R.color.logo_green))
+            else if (OrderFragment.type == Constants.SELL_STOCK)
+                this.setBackgroundColor(ContextCompat.getColor(context,R.color.primary_red))
         }else{
             this.setBackgroundColor(ContextCompat.getColor(context,R.color.gray))
         }

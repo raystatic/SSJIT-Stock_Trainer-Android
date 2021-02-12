@@ -27,7 +27,7 @@
             android:textColor="@color/white"
             android:id="@+id/tvStockBuyQuantity"
             android:layout_below="@id/tvStockSymbol"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_alignStart="@+id/tvStockSymbol"/>
 
     </RelativeLayout>

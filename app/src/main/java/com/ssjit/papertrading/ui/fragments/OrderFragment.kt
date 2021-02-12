@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.ssjit.papertrading.R
 import com.ssjit.papertrading.data.models.orders.Order
 import com.ssjit.papertrading.data.models.orders.OrderRequest
 import com.ssjit.papertrading.databinding.OrderLayoutBinding
@@ -304,6 +306,18 @@ class OrderFragment: BottomSheetDialogFragment() {
             btnAMO.enable(false)
             btnDAY.enable(false)
             btnIOC.enable(false)
+
+            if (OrderFragment.type == Constants.SELL_STOCK){
+                relTop.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary_red))
+                loadingButton.buttonColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
+                loadingButton.shadowColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
+                loadingButton.text = "SELL"
+            }else{
+                relTop.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.logo_green))
+                loadingButton.buttonColor = ContextCompat.getColor(requireContext(), R.color.logo_green)
+                loadingButton.shadowColor = ContextCompat.getColor(requireContext(), R.color.logo_green)
+                loadingButton.text = "BUY"
+            }
 
             btnDAY.setOnClickListener {
                 btnDAY.enable(true)
@@ -606,6 +620,15 @@ class OrderFragment: BottomSheetDialogFragment() {
                 viewmodel.order(orderRequest)
 
 
+            }
+
+            toSellOrder?.let {
+                userId = it.userId
+                price = it.eachPrice.replace(",", "").replace("-", "").toFloat()
+                //tvStockBuyQuantity.text = Utility.formatAmount(price.toString())
+                tvStockSymbol.text = it.symbol
+                etPrice.setText(price.toString())
+                etStockQty.setText("1")
             }
 
         }
