@@ -2,7 +2,7 @@ package com.ssjit.papertrading.data.repositories
 
 import com.ssjit.papertrading.data.local.OrdersDao
 import com.ssjit.papertrading.data.local.UserDao
-import com.ssjit.papertrading.data.models.transaction.Order
+import com.ssjit.papertrading.data.models.orders.Order
 import com.ssjit.papertrading.data.remote.ApiHelper
 import com.ssjit.papertrading.other.Constants
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class OrdersRepository @Inject constructor(
 
     suspend fun getOrders(userId:String) = apiHelper.getOrders(userId)
 
-    suspend fun insertOrders(order:Order) = ordersDao.insertOrder(order)
+    suspend fun insertOrders(order: Order) = ordersDao.insertOrder(order)
 
     fun getPendingOrders() = ordersDao.getPendingOrders(Constants.PENDING)
 

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ssjit.papertrading.R
-import com.ssjit.papertrading.data.models.transaction.Order
+import com.ssjit.papertrading.data.models.orders.Order
 import com.ssjit.papertrading.databinding.OrderItemBinding
 import com.ssjit.papertrading.databinding.PortfolioItemBinding
 import com.ssjit.papertrading.other.Constants
@@ -46,12 +46,11 @@ class PortfolioItemAdapter(
                 }
                 tvSymbol.text = order.symbol
                 tvCompany.text = order.companyName
-                Timber.d("${order.order_amount} ${order.no_shares}")
-                val boughtPrice = (order.order_amount.toFloat() / order.no_shares.toInt()).toFloat()
+                val boughtPrice = order.eachPrice.toFloat()
                 tvBoughtPrice.text = "Bought Price: $boughtPrice"
-                tvQty.text = "QTY: ${order.no_shares} | LTP: ${order.currentPrice}"
-                val changePerStock = order.currentPrice?.let { boughtPrice - it }
-                val pointsChange = changePerStock?.let { it * order.no_shares.toInt() }
+                tvQty.text = "QTY: ${order.noOfShares} | LTP: ${order.currentPrice}"
+                val changePerStock = order.currentPrice?.let { boughtPrice - it.toFloat() }
+                val pointsChange = changePerStock?.let { it * order.noOfShares.toInt() }
                 tvChange.text = changePerStock.toString()
 
                 if (pointsChange?.let { it >= 0 } == true){

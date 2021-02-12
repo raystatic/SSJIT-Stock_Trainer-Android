@@ -7,6 +7,7 @@ import com.ssjit.papertrading.data.local.NSEDao
 import com.ssjit.papertrading.data.local.UserDao
 import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
+import com.ssjit.papertrading.data.models.orders.OrderRequest
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
 import com.ssjit.papertrading.data.remote.ApiHelper
@@ -48,6 +49,8 @@ class StockInfoRepository @Inject constructor(
 
 
     suspend fun createOrder(createOrderRequest: CreateOrderRequest) = apiHelper.createOrder(createOrderRequest)
+
+    suspend fun order(orderRequest: OrderRequest) = apiHelper.createOrderRequest(orderRequest)
 
 
 }

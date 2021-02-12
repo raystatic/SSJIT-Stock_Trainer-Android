@@ -4,6 +4,8 @@ import com.ssjit.papertrading.data.models.FNO.FuturesResponse
 import com.ssjit.papertrading.data.models.FNO.OptionsResponse
 import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
+import com.ssjit.papertrading.data.models.orders.OrderRequest
+import com.ssjit.papertrading.data.models.orders.OrderResponse
 import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
@@ -46,5 +48,9 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun getFutures(symbol: String): Response<FuturesResponse> {
         return apiService.getFutures(symbol)
+    }
+
+    override suspend fun createOrderRequest(createOrderRequest: OrderRequest): Response<OrderResponse> {
+        return apiService.createOrderRequest(createOrderRequest)
     }
 }

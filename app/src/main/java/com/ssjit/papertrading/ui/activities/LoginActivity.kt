@@ -43,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        startActivity(Intent(this,HomeActivity::class.java))
-        finish()
+//        startActivity(Intent(this,HomeActivity::class.java))
+//        finish()
 
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()

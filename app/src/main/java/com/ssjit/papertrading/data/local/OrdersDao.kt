@@ -5,13 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ssjit.papertrading.data.models.transaction.Order
+import com.ssjit.papertrading.data.models.orders.Order
 
 @Dao
 interface OrdersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrder(order:Order)
+    suspend fun insertOrder(order: Order)
 
     @Query("SELECT * FROM orders")
     fun getAllOrders():LiveData<List<Order>>

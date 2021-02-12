@@ -47,4 +47,17 @@ object Constants {
     const val BUY = "BUY"
     const val SELL = "SELL"
 
+    const val CNC = "CNC"
+    const val MIS = "MIS"
+    const val MARKET = "MARKET"
+    const val LIMIT = "LIMIT"
+    const val SL = "SL"
+    const val SLM = "SLM"
+    const val RGLR = "RGLR"
+    const val BO = "BO"
+    const val CO = "CO"
+    const val AMO = "AMO"
+    const val DAY = "DAY"
+    const val IOC = "IOC"
+
 }

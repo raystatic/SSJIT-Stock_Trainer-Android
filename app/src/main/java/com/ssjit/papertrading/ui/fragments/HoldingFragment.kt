@@ -34,9 +34,9 @@ class HoldingFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         portfolioAdapter = PortfolioItemAdapter(requireContext()) {
-            val buySellDialogFragment = BuySellDialogFragment()
-            BuySellDialogFragment.type = Constants.SELL_STOCK
-            BuySellDialogFragment.toSellOrder = it
+            val buySellDialogFragment = OrderFragment()
+            OrderFragment.type = Constants.SELL_STOCK
+            OrderFragment.toSellOrder = it
             buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
         }
 

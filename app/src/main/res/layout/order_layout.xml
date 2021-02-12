@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:id="@+id/relTop"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TCS"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:id="@+id/tvStockSymbol"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/tvStockBuyQuantity"
+            android:layout_below="@id/tvStockSymbol"
+            android:visibility="visible"
+            android:layout_alignStart="@+id/tvStockSymbol"/>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/relTop"
+        android:layout_above="@id/relBottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+<!--            qty-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:id="@+id/linQty"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quantity"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:hint="Stock QTY"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:paddingTop="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/gray_box"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/etStockQty"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:hint="Price"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/gray_box"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/etPrice"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            product-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIS"
+                    android:textSize="14sp"
+                    android:id="@+id/btnMIS"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:backgroundTint="@color/logo_green"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CNC"
+                    android:textSize="14sp"
+                    android:id="@+id/btnCNC"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:enabled="true"
+                    android:backgroundTint="@color/logo_green"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toLeftOf="@+id/btnMIS"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
+
+
+<!--            order-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:id="@+id/linOrder"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="MARKET"
+                        android:textSize="12sp"
+                        android:id="@+id/btnMarket"
+                        android:enabled="true"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="LIMIT"
+                        android:textSize="12sp"
+                        android:id="@+id/btnLIMIT"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:enabled="true"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="SL"
+                        android:textSize="12sp"
+                        android:id="@+id/btnSL"
+                        android:enabled="true"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="SLM"
+                        android:textSize="12sp"
+                        android:id="@+id/btnSLM"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:enabled="true"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            setToggle-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/linSetToggle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/linSetSlope">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Slopes"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/toggleSetSlope"
+                            app:sb_shadow_color="@color/blue"
+                            app:sb_button_color="@color/blue"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/linSetTarget">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Target"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/toggleSetTarget"
+                            app:sb_shadow_color="@color/blue"
+                            app:sb_button_color="@color/blue"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+<!--            trigger-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:id="@+id/linTrigger">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trigger"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:hint="0.0"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:paddingTop="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/gray_box"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/etTrigger"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            variety-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:id="@+id/linVariety">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variety"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="RGLR"
+                        android:textSize="12sp"
+                        android:id="@+id/btnRGLR"
+                        android:enabled="true"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="BO"
+                        android:textSize="12sp"
+                        android:id="@+id/btnBO"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:enabled="true"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="CO"
+                        android:textSize="12sp"
+                        android:id="@+id/btnCO"
+                        android:enabled="true"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="AMO"
+                        android:textSize="12sp"
+                        android:id="@+id/btnAMO"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:enabled="true"
+                        android:backgroundTint="@color/logo_green"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            bo-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linBO"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Stoploss"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:hint="0.0"
+                            android:textAlignment="center"
+                            android:inputType="number"
+                            android:paddingTop="5dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/gray_box"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/etStopless"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Target"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:hint="0.0"
+                            android:textAlignment="center"
+                            android:inputType="number"
+                            android:paddingTop="5dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/gray_box"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/etTarget"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trailing Stoploss"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:hint="0.0"
+                            android:textAlignment="center"
+                            android:inputType="number"
+                            android:paddingTop="5dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:paddingBottom="5dp"
+                            android:background="@drawable/gray_box"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/etTrailingStoploss"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            validity-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:id="@+id/linValidity">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Validity"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IOC"
+                    android:textSize="14sp"
+                    android:id="@+id/btnIOC"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:backgroundTint="@color/logo_green"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DAY"
+                    android:textSize="14sp"
+                    android:id="@+id/btnDAY"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:enabled="true"
+                    android:backgroundTint="@color/logo_green"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toLeftOf="@+id/btnIOC"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
+
+<!--            stoploss trigger-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:id="@+id/linStoplossTrigger">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trigger"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:hint="Trigger"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:paddingTop="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/gray_box"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/etStoplossTrigger"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            dics-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:id="@+id/linDisc"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disc. QTY"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:hint="Disc. QTY"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:paddingTop="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/gray_box"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/etDiscQty"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:id="@+id/relBottom"
+        android:background="@color/primaryblue"
+        android:layout_marginBottom="10dp">
+
+        <com.kusu.loadingbutton.LoadingButton
+            android:id="@+id/loadingButton"
+            android:layout_width="200dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            app:lb_isShadowEnable="true"
+            app:lb_isCircular="true"
+            app:lb_loaderColor="@color/white"
+            app:lb_buttonColor="@color/logo_green"
+            app:lb_shadowColor="@color/logo_green"
+            app:lb_shadowHeight="5dp"
+            app:lb_cornerRadius="25dp"
+            android:layout_centerInParent="true"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_checked_green"
+            android:id="@+id/imgSuccess"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssjit.papertrading.data.models.indices.BSE
 import com.ssjit.papertrading.data.models.indices.NSE
+import com.ssjit.papertrading.data.models.orders.OrderRequest
+import com.ssjit.papertrading.data.models.orders.OrderResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
@@ -22,6 +24,48 @@ import java.lang.Exception
 class StockInfoViewModel @ViewModelInject constructor(
     private val repository: StockInfoRepository
 ):ViewModel() {
+
+
+    private val _orderResponse = MutableLiveData<Resource<OrderResponse>>()
+    val orderResponse:LiveData<Resource<OrderResponse>> get() = _orderResponse
+
+    fun order(orderRequest: OrderRequest) = viewModelScope.launch {
+        _orderResponse.postValue(Resource.loading(null))
+        try {
+            repository.order(orderRequest).also {
+                if (it.isSuccessful){
+                    _orderResponse.postValue(Resource.success(it.body()))
+                }else{
+                    _orderResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG, null))
+                }
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            _orderResponse.postValue(Resource.error(Constants.SOMETHING_WENT_WRONG,null))
+        }
+    }
+
+    private val _currrentOrder = MutableLiveData<String>()
+    val currentOrder:LiveData<String> get() = _currrentOrder
+
+    private val _currrentProduct = MutableLiveData<String>()
+    val currentProduct:LiveData<String> get() = _currrentProduct
+
+    private val _currrentVariety = MutableLiveData<String>()
+    val currentVariety:LiveData<String> get() = _currrentVariety
+
+    fun setCurrentProduct(str:String){
+        _currrentProduct.postValue(str)
+    }
+
+    fun setCurrentOrder(str: String){
+        _currrentOrder.postValue(str)
+    }
+
+    fun setCurrentVariety(str:String){
+        _currrentVariety.postValue(str)
+    }
+
 
     private val _stockDetailsLoading = MutableLiveData<Boolean>()
 

@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ssjit.papertrading.data.models.orders.Order
 import com.ssjit.papertrading.data.models.stockdetail.StockData
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.GetOrdersResponse
-import com.ssjit.papertrading.data.models.transaction.Order
 import com.ssjit.papertrading.data.repositories.OrdersRepository
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Resource
@@ -49,7 +49,7 @@ class OrdersViewModel @ViewModelInject constructor(
 
     }
 
-    fun insertOrder(order:Order) = viewModelScope.launch {
+    fun insertOrder(order: Order) = viewModelScope.launch {
         repository.insertOrders(order)
     }
 
