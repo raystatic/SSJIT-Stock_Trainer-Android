@@ -7,6 +7,8 @@ import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.orders.OrderRequest
 import com.ssjit.papertrading.data.models.orders.OrderResponse
 import com.ssjit.papertrading.data.models.payment.PaymentIntent
+import com.ssjit.papertrading.data.models.payment.PaymentRequest
+import com.ssjit.papertrading.data.models.payment.UpdatedUser
 import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
@@ -57,5 +59,9 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun getPaymentIntent(): Response<PaymentIntent> {
         return apiService.getPaymentIntent()
+    }
+
+    override suspend fun createPayment(paymentRequest: PaymentRequest): Response<UpdatedUser> {
+        return apiService.createPayment(paymentRequest)
     }
 }

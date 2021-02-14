@@ -169,13 +169,15 @@ class ProfileFragment: Fragment(){
                             )
                     )
 
-                    list.add(
+                    if (user.isProUser == 0){
+                        list.add(
                             ProfileItem(
-                                    itemType = Constants.PROFILE_PRO_VERSION,
-                                    image = R.drawable.ic_high_quality,
-                                    caption = Constants.PROFILE_PRO_VERSION
+                                itemType = Constants.PROFILE_PRO_VERSION,
+                                image = R.drawable.ic_high_quality,
+                                caption = Constants.PROFILE_PRO_VERSION
                             )
-                    )
+                        )
+                    }
 
                     list.add(
                             ProfileItem(

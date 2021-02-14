@@ -8,8 +8,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
+import com.ssjit.papertrading.data.models.payment.PaymentRequest
 import com.ssjit.papertrading.databinding.ActivityPaymentsBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.Extensions.observeOnce
 import com.ssjit.papertrading.other.Extensions.showSnack
 import com.ssjit.papertrading.other.ShowAlertDialog
 import com.ssjit.papertrading.other.Status
@@ -118,6 +120,7 @@ class PaymentsActivity : AppCompatActivity() {
     }
 
     private fun subscribeToObservers() {
+
         viewmodel.paymentIntent.observe(this){
             when(it.status){
                 Status.SUCCESS -> {
@@ -143,6 +146,57 @@ class PaymentsActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewmodel.updatedUser.observe(this) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { res ->
+                        if (!res.error) {
+
+
+                            viewmodel.user.observeOnce(this){
+                                it?.let {
+                                    val user = it
+                                    user.isProUser = 1
+                                    viewmodel.insertUser(user)
+
+                                    ShowAlertDialog(
+                                            context = this,
+                                            title = "Payment Status",
+                                            message = "Payment successfully done",
+                                            positive = "Okay",
+                                            negative = null,
+                                            onPositiveButtonClicked = {
+                                                finish()
+                                            },
+                                            onNegativeButtonClicked = {
+
+                                            }
+                                    )
+
+                                }
+                            }
+
+
+                        }
+                        binding.progressBar.isVisible = false
+                    }
+                }
+
+                Status.LOADING -> {
+                    binding.progressBar.isVisible = true
+                    binding.btnPay.isEnabled = false
+                }
+
+                Status.ERROR -> {
+                    Timber.d("Error in payment: ${it.message}")
+                    binding.root.showSnack(Constants.SOMETHING_WENT_WRONG)
+                    binding.progressBar.isVisible = false
+                    binding.btnPay.isEnabled = false
+                }
+            }
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -158,20 +212,22 @@ class PaymentsActivity : AppCompatActivity() {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     weakActivity.get()?.let { activity ->
 
+                        val ob = gson.toJson(paymentIntent)
 
-                        ShowAlertDialog(
-                            context = activity,
-                            title = "Payment Status",
-                            message = "Payment successfully done",
-                            positive = "Okay",
-                            negative = null,
-                            onPositiveButtonClicked = {
-                                finish()
-                            },
-                            onNegativeButtonClicked = {
+                        viewmodel.user.observeOnce(this@PaymentsActivity){
+                            it?.let {
+                                val paymentRequest = PaymentRequest(
+                                    userId = it.id,
+                                    amount = paymentIntent.amount.toString(),
+                                    created_at = paymentIntent.created.toString(),
+                                    status = paymentIntent.status.toString()
+                                )
+
+                                viewmodel.createPayment(paymentRequest)
 
                             }
-                        )
+                        }
+
 
                     }
                 } else if (status == StripeIntent.Status.RequiresPaymentMethod) {
