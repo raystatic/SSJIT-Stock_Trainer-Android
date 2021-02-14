@@ -22,6 +22,7 @@ import com.ssjit.papertrading.data.models.ProfileItem
 import com.ssjit.papertrading.databinding.FragmentProfileBinding
 import com.ssjit.papertrading.other.Constants
 import com.ssjit.papertrading.other.Utility
+import com.ssjit.papertrading.ui.activities.PaymentsActivity
 import com.ssjit.papertrading.ui.adapters.ProfileItemAdapter
 import com.ssjit.papertrading.ui.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,6 +69,10 @@ class ProfileFragment: Fragment(){
                         intent.putExtra(Intent.EXTRA_EMAIL, "rahul9650ray@gmail.com")
 
                         startActivity(Intent.createChooser(intent, "Send Email"))
+                    }
+
+                    Constants.PROFILE_PRO_VERSION -> {
+                        startActivity(Intent(requireContext(),PaymentsActivity::class.java))
                     }
 
                 }

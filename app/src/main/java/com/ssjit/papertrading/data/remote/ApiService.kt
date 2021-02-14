@@ -6,6 +6,7 @@ import com.ssjit.papertrading.data.models.LoginRequest
 import com.ssjit.papertrading.data.models.LoginResponse
 import com.ssjit.papertrading.data.models.orders.OrderRequest
 import com.ssjit.papertrading.data.models.orders.OrderResponse
+import com.ssjit.papertrading.data.models.payment.PaymentIntent
 import com.ssjit.papertrading.data.models.search.SearchResponse
 import com.ssjit.papertrading.data.models.stockdetail.StockDetailResponse
 import com.ssjit.papertrading.data.models.transaction.CreateOrderRequest
@@ -58,5 +59,8 @@ interface ApiService {
     suspend fun createOrderRequest(
             @Body orderRequest: OrderRequest
     ):Response<OrderResponse>
+
+    @GET("stripe/create-payment-intent")
+    suspend fun getPaymentIntent():Response<PaymentIntent>
 
 }

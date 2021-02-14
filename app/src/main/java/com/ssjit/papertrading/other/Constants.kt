@@ -61,4 +61,10 @@ object Constants {
     const val DAY = "DAY"
     const val IOC = "IOC"
 
+
+    const val GPAY_MERCHANT_UPI = "krashi151998@okaxis"
+    const val GPAY_MERCHANT_NAME = "Paper Trading"
+
+    const val STRIPE_API_KEY = "pk_test_51IKddfBxBdshQqte65SHANMUzwbwgFT5D0EbYXTSardwMsxf4qmz6FltlGEBbhDFgDLiPl2IU7Djirk8eBfoatVi00S1jhl7VE"
+
 }
