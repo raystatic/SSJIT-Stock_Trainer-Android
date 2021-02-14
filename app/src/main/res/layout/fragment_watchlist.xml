@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2"
                     android:id="@+id/linIndices"
-                    android:background="@color/grey">
+                    android:background="@color/white">
 
                     <RelativeLayout
                         android:layout_width="0dp"

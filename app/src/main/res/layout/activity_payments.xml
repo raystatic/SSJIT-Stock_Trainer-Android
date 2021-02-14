@@ -9,24 +9,24 @@
     tools:context=".ui.activities.PaymentsActivity">
 
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?actionBarSize"-->
-<!--        android:id="@+id/topBarRel"-->
-<!--        android:background="@color/logo_green"-->
-<!--        android:translationZ="10dp">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:id="@+id/topBarRel"
+        android:background="@color/logo_green"
+        android:translationZ="10dp">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Pro version"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16sp"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_centerVertical="true"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pro version"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"/>
 
 
-<!--    </RelativeLayout>-->
+    </RelativeLayout>
 
 <!--    <com.google.android.material.textfield.TextInputLayout-->
 <!--        android:id="@+id/inputName"-->
@@ -88,14 +88,23 @@
 
 <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter card details"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"/>
 
     <com.stripe.android.view.CardInputWidget
         android:id="@+id/cardInputWidget"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:scrollIndicators="bottom"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="10dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
