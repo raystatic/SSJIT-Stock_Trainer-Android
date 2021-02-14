@@ -10,9 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ssjit.papertrading.databinding.FragmentStockOverviewBinding
 import com.ssjit.papertrading.other.Constants
+import com.ssjit.papertrading.other.Extensions.observeOnce
+import com.ssjit.papertrading.other.ShowAlertDialog
 import com.ssjit.papertrading.other.Utility
 import com.ssjit.papertrading.ui.activities.FutureOptionsActivity
 import com.ssjit.papertrading.ui.activities.HomeActivity
+import com.ssjit.papertrading.ui.activities.PaymentsActivity
 import com.ssjit.papertrading.ui.viewmodels.StockInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -37,9 +40,31 @@ class StockOverviewFragment: Fragment() {
 //            BuySellDialogFragment.type = Constants.BUY_STOCK
 //            val buySellDialogFragment = BuySellDialogFragment()
 //            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
-            OrderFragment.type = Constants.BUY_STOCK
-            val buySellDialogFragment = OrderFragment()
-            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
+
+            viewmodel.user.observeOnce(viewLifecycleOwner){
+                it?.let {
+                    if (Utility.shouldShowProVersionDialog(it.user_created_at,it.isProUser)){
+                        ShowAlertDialog(
+                                context = requireContext(),
+                                title = "Upgrade to Pro Version",
+                                message = "Upgrade to pro version to get access all the exclusive features",
+                                positive = "Okay",
+                                negative = "Skip",
+                                onPositiveButtonClicked = {
+                                    startActivity(Intent(requireContext(), PaymentsActivity::class.java))
+                                },
+                                onNegativeButtonClicked = {
+
+                                }
+                        )
+                    }else{
+                        OrderFragment.type = Constants.BUY_STOCK
+                        val buySellDialogFragment = OrderFragment()
+                        buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
+                    }
+                }
+            }
+
         }
 
         binding.btnSell.setOnClickListener {
@@ -47,9 +72,29 @@ class StockOverviewFragment: Fragment() {
 //            val buySellDialogFragment = BuySellDialogFragment()
 //            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
 
-            OrderFragment.type = Constants.SELL_STOCK
-            val buySellDialogFragment = OrderFragment()
-            buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
+            viewmodel.user.observeOnce(viewLifecycleOwner){
+                it?.let {
+                    if (Utility.shouldShowProVersionDialog(it.user_created_at,it.isProUser)){
+                        ShowAlertDialog(
+                                context = requireContext(),
+                                title = "Upgrade to Pro Version",
+                                message = "Upgrade to pro version to get access all the exclusive features",
+                                positive = "Okay",
+                                negative = "Skip",
+                                onPositiveButtonClicked = {
+                                    startActivity(Intent(requireContext(), PaymentsActivity::class.java))
+                                },
+                                onNegativeButtonClicked = {
+
+                                }
+                        )
+                    }else{
+                        OrderFragment.type = Constants.SELL_STOCK
+                        val buySellDialogFragment = OrderFragment()
+                        buySellDialogFragment.show(childFragmentManager,buySellDialogFragment.tag)
+                    }
+                }
+            }
         }
 
         binding.lowHighSeekbar.setOnTouchListener { v, event ->
