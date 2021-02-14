@@ -32,7 +32,7 @@ class StockDetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primaryblue)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.logo_green)
 
         binding.imgBack.setOnClickListener {
 //            finish()

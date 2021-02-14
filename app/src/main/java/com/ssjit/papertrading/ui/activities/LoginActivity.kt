@@ -54,9 +54,12 @@ class LoginActivity : AppCompatActivity() {
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
 
-//        account?.let { acc->
-//            updateUI(acc)
-//        }
+        account?.let { acc->
+            binding.cardLogin.isEnabled = false
+            updateUI(acc)
+        } ?: kotlin.run {
+            binding.cardLogin.isEnabled = false
+        }
 
         binding.cardLogin.setOnClickListener {
             signIn()

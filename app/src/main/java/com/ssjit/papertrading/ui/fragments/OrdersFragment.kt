@@ -34,7 +34,7 @@ class OrdersFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.green)
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.logo_green)
         binding.ordersTabLayout.setupWithViewPager(binding.ordersPager)
         orderPagerAdapter = OrdersPagerAdapter(childFragmentManager)
         binding.ordersPager.adapter = orderPagerAdapter

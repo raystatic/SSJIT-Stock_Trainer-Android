@@ -52,7 +52,7 @@ class ProfileFragment: Fragment(){
 
         activity?.window?.statusBarColor = ContextCompat.getColor(
                 requireContext(),
-                R.color.app_puple
+                R.color.logo_green
         )
 
 

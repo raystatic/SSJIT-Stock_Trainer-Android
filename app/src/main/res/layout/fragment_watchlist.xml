@@ -25,7 +25,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/topBarRel"
-                android:background="@color/primaryblue"
+                android:background="@color/logo_green"
                 android:translationZ="10dp">
 
                 <TextView
@@ -139,6 +139,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardIndices"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:backgroundTint="@color/logo_green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:visibility="gone"/>
 

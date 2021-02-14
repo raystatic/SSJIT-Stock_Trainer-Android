@@ -205,7 +205,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvLow"
                 android:layout_marginTop="20dp"
                 android:thumb="@drawable/seekbar_thumb"
-                android:progressDrawable="@drawable/blue_pink_gradient"
+                android:progressDrawable="@drawable/blue_green_gradient"
                 android:splitTrack="false"
                 android:focusable="false"
                 android:clickable="false"
@@ -256,6 +256,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:visibility="visible"
                 android:layout_marginTop="30dp"
+                android:backgroundTint="@color/logo_green"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

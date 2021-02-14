@@ -56,7 +56,7 @@ class WatchlistFragment: Fragment() {
             HomeActivity.goToTransaction = false
         }
 
-        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.primaryblue)
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.logo_green)
         binding.btnFindStocks.setOnClickListener { v->
             v.findNavController().navigate(R.id.action_watchlistFragment_to_searchFragment)
         }

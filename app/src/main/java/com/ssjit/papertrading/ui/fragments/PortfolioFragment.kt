@@ -39,7 +39,7 @@ class PortfolioFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.brown)
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.logo_green)
         binding.portfolioTabLayout.setupWithViewPager(binding.portfolioPager)
         portfolioPagerAdapter = PortfolioPagerAdapter(childFragmentManager)
         binding.portfolioPager.adapter = portfolioPagerAdapter

@@ -740,7 +740,6 @@
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:id="@+id/relBottom"
-        android:background="@color/primaryblue"
         android:layout_marginBottom="10dp">
 
         <com.kusu.loadingbutton.LoadingButton
