@@ -12,6 +12,7 @@ object Constants {
     const val NETWORK_BASE_URL = "http://192.168.0.105:5000/api/v1/"
     //const val NETWORK_BASE_URL = "http://192.168.0.112:5000/api/v1/"
     //const val NETWORK_BASE_URL = "http://192.168.43.226:5000/api/v1/"
+    const val WEB_SOCKET_URL = "ws://192.168.0.105:5000"
 
     const val KEY_PREF_NAME = "PrepareTradingPrefs"
     const val ROOM_DB_NAME = "PaperTradingRoomDB"

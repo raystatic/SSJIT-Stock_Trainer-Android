@@ -18,5 +18,6 @@ data class User(
     val loss:String,
     val positive_transactions:Int,
     val negative_transactions:Int,
-    var isProUser:Int
+    var isProUser:Int,
+    val user_created_at:String
 )

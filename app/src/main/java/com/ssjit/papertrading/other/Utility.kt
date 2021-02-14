@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.ssjit.papertrading.R
 import timber.log.Timber
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Utility {
@@ -66,6 +67,29 @@ object Utility {
         customTabsIntent.intent.setPackage("com.android.chrome")
         customTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         customTabsIntent.launchUrl(context, Uri.parse(url))
+    }
+
+    fun shouldShowProVersionDialog(userCreatedAt: String, isProUser:Int): Boolean {
+
+        if (isProUser == 0){
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+//            val userCreationDateString = sdf.format(userCreatedAt)
+            val userCreatedDate = Date(userCreatedAt.toLong())
+
+          //  val currentDateString = sdf.format("${System.currentTimeMillis()}")
+            val currentDate = Date(System.currentTimeMillis())
+
+            val differenceInTime = currentDate.time - userCreatedDate.time
+
+            val differenceInDays = differenceInTime / (1000 * 3600 * 24)
+
+            return differenceInDays >= 3
+//            return true
+
+        }
+
+        return false
+
     }
 
 }
